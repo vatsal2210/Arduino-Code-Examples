@@ -1,0 +1,91 @@
+/*
+Name: Basic Light
+Class: tabber-widget-basic-light
+
+Notice: If the Class changes or the file is renamed, you must resave all widgets that use this template.
+*/
+
+/* Style Tabs */
+
+.tabber_widget .tabber-widget-basic-light {
+	color: #414042;
+	position: relative;
+	border: 1px solid #E4E4E4
+}
+.tabber_widget .tabber-widget-basic-light ul.tabber-widget-tabs {
+	margin: 0;
+	padding: 0
+}
+.tabber_widget .tabber-widget-basic-light ul.tabber-widget-tabs li {
+	list-style: none;
+	display: block;
+	width: 50%;
+	float: left;
+	text-align: center;
+	margin: 0;
+	padding: 0 !important
+}
+.tabber_widget .tabber-widget-basic-light ul.tabber-widget-tabs li a {
+	color: #414042;
+	font-family: "Martel Sans", serif;
+	font-weight: 700;
+	font-size: 20px;
+	display: block;
+	background: #f0f0f0;
+	border-left: 1px solid #E4E4E4;
+	border-bottom: 1px solid #E4E4E4;
+	padding: 17px 0 11px;
+	line-height: 100%;
+	text-decoration: none;
+	position: relative
+}
+.tabber_widget .tabber-widget-basic-light ul.tabber-widget-tabs li a.selected {
+	background: #ffffff;
+	border-bottom: none !important;
+	border-left: none !important
+}
+.tabber_widget .tabber-widget-basic-light ul.tabber-widget-tabs li a:hover {
+	color: #000
+}
+.tabber_widget .tabber-widget-basic-light .tabber-widget-content {
+	background: #fff;
+	padding-top: 10px;
+	color: #414042;
+	font-size: 16px;
+	line-height: 1.62857143
+}
+.tabber_widget .tabber-widget-basic-light .tabber-widget-content .tabber-widget {
+	text-align: left
+}
+.tabber_widget .tabber-widget-basic-light .tabber-widget-content .tabber-widget h5.tabber-widget-title {
+	display: none
+}
+.tabber_widget .tabber-widget-basic-light .tabber-widget-content .tabber-widget ul {
+	margin: 0;
+	padding: 0;
+	clear: both;
+	display: block
+}
+.tabber_widget .tabber-widget-basic-light .tabber-widget-content .tabber-widget ul li {
+	list-style-type: none;
+	width: 100%;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 11px 15px 11px 15px;
+	border-bottom: 1px solid #E4E4E4;
+	text-align: left;
+	position: relative
+}
+.tabber_widget .tabber-widget-basic-light .tabber-widget-content .tabber-widget ul li:first-child {
+	padding-top: 11px
+}
+.tabber_widget .tabber-widget-basic-light .tabber-widget-content .tabber-widget ul li a {
+	font-family: "Martel", serif;
+	font-weight: 400;
+	font-size: 14px;
+	color: #444
+}
+.tabber_widget .tabber-widget-basic-light .tabber-widget-content .tabber-widget ul li a:hover {
+	color: #000;
+	text-decoration: underline
+}

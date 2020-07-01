@@ -1,0 +1,7 @@
+jQuery(function() {
+	jQuery("ul.qa-avatar-list > li").hover(function() {
+		jQuery(this).find(".qa-hover-cont").fadeIn("fast");
+	}, function() {
+		jQuery(this).find(".qa-hover-cont").fadeOut("fast");
+	});
+});

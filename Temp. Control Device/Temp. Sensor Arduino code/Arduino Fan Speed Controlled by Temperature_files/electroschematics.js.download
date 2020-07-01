@@ -1,0 +1,167 @@
+try{
+;(function(){
+	"use strict";
+	if("querySelector" in document !== true) return null;
+	var tag, 
+	_arp = {
+		mappath: function(o) {
+			var map = o.map,
+				pattern = o.pattern,
+				pathname = window.location.pathname,
+				pl = "",
+				matches = pathname.match(pattern),
+				match = "";
+			if(matches) {
+				match = matches[0];
+			}
+			if (match in map) {
+				pl = map[match];
+			}
+			return pl;
+		},
+		
+		fn: function(selector) {
+			return selector();
+		},
+		
+		opn: function(selector){
+			var txt = this.text(selector),
+			result 	=[],
+			matches = txt.match(/((\d+(?=\d?(?=[A-Z-])))|([A-Z]+(?=[A-Z]?(?=[0-9-]))))[\w-/#]{4,15}/g);
+			if(matches){
+				matches = this._uniq(matches);
+				for( var i =0,  l=matches.length; i<l; i++ ){
+					if(matches[i].match(/[a-z]+/g)) continue;
+					if(matches[i].replace(/[^A-Z0-9]+/g,"").length < 5) continue;
+					if(!matches[i].match(/[A-Z]+/,"")) continue; 
+					if(!matches[i].match(/[0-9]+/,"")) continue;
+					result.push( matches[i] );
+				}
+			}
+			result = result.splice(0,3);
+			return result;
+		}, 
+		
+		text: function(selector){
+			var el = document.querySelector(selector);
+			return el ? el.innerText : "";
+		},
+		
+		queryvar: function(key){
+			var regex = new RegExp("[\\?&]" + key + "=([^&#]*)"),
+				results = regex.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));			
+		},
+		pathsegment: function(pos){
+			var segments = window.location.pathname.split("/");
+			if(segments.length>=pos){
+				return segments[pos];
+			} else {
+				return "";
+			}
+		},
+		_uniq: function(input){
+			var out = [], test = {};
+			for( var i = 0, l = input.length; i < l; i++){
+				var v = input[i];
+				if(!test.hasOwnProperty(v)){
+					test[v]=true;
+					out.push(v);
+				}				
+			}
+			return out;
+		},
+		
+		run: function(options){
+			var rules = this._match(options.map),
+				args = {};
+			if(rules){
+				var action = rules[0], 
+					url = options.tag_uri+"?website="+options.website+"&action="+action,
+					args_num=0;
+				if(window._dp) {
+					url += "&pass=" + window._dp.pass;
+				}
+				for(var arg in rules[1]){
+					if(rules[1].hasOwnProperty(arg)){
+						var value = this._evaluate( rules[1][arg]);
+						if(value.toString()!=""){
+							args[arg] = value;
+							url+= "&" + arg + "=" + encodeURIComponent( value );
+							args_num++;
+						}
+					}
+				}
+				if(args_num > 0){
+					url += "&cb=" + (new Date).getTime() + "." + parseInt( Math.random() * 99999 );
+					//console.log(url);
+					
+					if(tag && tag.parent){
+						tag.parentNode.removeChild(tag);
+					}
+					tag = document.createElement("iframe");
+					tag.setAttribute("src", url);
+					tag.style.width="1px";
+					tag.style.width="1px";
+					tag.style.visibility = "hidden";
+					document.body.appendChild(tag);
+				}
+			}
+			
+			if(window._dp) {
+				var _dp = window._dp;
+				_dp.options = options;
+				_dp.rules = rules;
+				_dp.args = args;
+				if(_dp.callback) {
+					_dp.callback();
+				}
+			}
+		},
+		
+		_evaluate: function(spec){
+			var key, value;
+			for(var k in spec){
+				if(spec.hasOwnProperty(k)){
+					key = k; value=spec[k];
+					break;
+				}
+			}
+			if(k && typeof this[k]=="function"){
+				var result =  this[k](value);
+				return result;
+			}
+		},
+		_match: function(map){
+			var pathname = window.location.pathname;
+			for(var i in map){
+				if(!map.hasOwnProperty(i)) continue;
+				var pattern = i.replace(/\*/g,"[^/]+").replace(/\//g,"\\/"),
+					re = new RegExp("^"+pattern +"\/?$");
+				if(re.test( pathname )){
+					return map[i];
+				}
+			}
+		}
+		
+	};	
+	var options = {};
+	options.tag_uri = "//reach.siliconexpert.com/tag.php";
+	
+	
+	//////////////////////////////////////
+	options.website = "electroschematics";
+	options.map = {
+		"/[0-9]+/*/" : [ "opn_desc", { 
+				part: { opn: ".main-wrap" }, 
+				desc: { text: ".desc h1" }
+			}]
+	};
+		
+	_arp.run(options);
+}());
+} catch (_e){
+	if(window.console && window.console.log)
+	window.console.log(_e);
+}
+

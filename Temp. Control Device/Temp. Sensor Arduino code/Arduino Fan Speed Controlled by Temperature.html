@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta property="fb:admins" content="100000360226458">
+
+		<title>Arduino Fan Speed Controlled by Temperature</title>
+		<link rel="stylesheet" href="./Arduino Fan Speed Controlled by Temperature_files/magnific-popup.css">
+		<link rel="stylesheet" href="./Arduino Fan Speed Controlled by Temperature_files/jquery.mCustomScrollbar.css">
+		<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/pd.js.download"></script><script type="text/javascript" async="" src="./Arduino Fan Speed Controlled by Temperature_files/electroschematics.js.download"></script><script src="./Arduino Fan Speed Controlled by Temperature_files/expansion_embed.js.download"></script><script id="twitter-wjs" src="./Arduino Fan Speed Controlled by Temperature_files/widgets.js.download"></script><script src="./Arduino Fan Speed Controlled by Temperature_files/osd.js.download"></script><script id="facebook-jssdk" src="./Arduino Fan Speed Controlled by Temperature_files/sdk.js.download"></script><script async="" src="./Arduino Fan Speed Controlled by Temperature_files/analytics.js.download"></script><script async="" src="./Arduino Fan Speed Controlled by Temperature_files/gtm.js.download"></script><script src="./Arduino Fan Speed Controlled by Temperature_files/jquery-2.2.4.min.js.download" type="text/javascript"></script>
+		
+	  
+<!-- This site is optimized with the Yoast SEO plugin v3.3.2 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="I made this project because I wanted a way to automatically control the speed of a DC fan according to the temperature read by a LM35 sensor. I had a few p">
+<meta name="robots" content="noodp">
+<link rel="canonical" href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/">
+<!-- / Yoast SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="ElectroSchematics.com » Fan Speed Controlled by Temperature and Arduino Comments Feed" href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.electroschematics.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.5.2"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;if(!g||!g.fillText)return!1;switch(g.textBaseline="top",g.font="600 32px Arial",a){case"flag":return g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3;case"diversity":return g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,d=c[0]+","+c[1]+","+c[2]+","+c[3],g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e;case"simple":return g.fillText(h(55357,56835),0,0),0!==g.getImageData(16,16,1,1).data[0];case"unicode8":return g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Arduino Fan Speed Controlled by Temperature_files/wp-emoji-release.min.js.download" type="text/javascript"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="yarppWidgetCss-css" href="./Arduino Fan Speed Controlled by Temperature_files/widget.css" type="text/css" media="all">
+<link rel="stylesheet" id="etuts-style-css" href="./Arduino Fan Speed Controlled by Temperature_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="./Arduino Fan Speed Controlled by Temperature_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="arconix-shortcodes-css" href="./Arduino Fan Speed Controlled by Temperature_files/arconix-shortcodes.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="./Arduino Fan Speed Controlled by Temperature_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="cookielawinfo-style-css" href="./Arduino Fan Speed Controlled by Temperature_files/cli-style.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpProQuiz_front_style-css" href="./Arduino Fan Speed Controlled by Temperature_files/wpProQuiz_front.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-q2a-style-css" href="./Arduino Fan Speed Controlled by Temperature_files/style-q2a.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-pagenavi-css" href="./Arduino Fan Speed Controlled by Temperature_files/pagenavi-css.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-lightbox-2.min.css-css" href="./Arduino Fan Speed Controlled by Temperature_files/lightbox.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="tabber_widget-tabber-widget-basic-light-css" href="./Arduino Fan Speed Controlled by Temperature_files/basic-light.css" type="text/css" media="all">
+<link rel="stylesheet" id="wppb_stylesheet-css" href="./Arduino Fan Speed Controlled by Temperature_files/style-front-end.css" type="text/css" media="all">
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/jquery.js.download"></script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/jquery-migrate.min.js.download"></script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/bootstrap.min.js.download"></script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/jquery.matchHeight.js.download"></script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/comments.js.download"></script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/singlepage.js.download"></script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/jquery.mCustomScrollbar.concat.min.js.download"></script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/main.js.download"></script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/jquery.magnific-popup.js.download"></script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/cookielawinfo.js.download"></script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/jquery.idTabs.min.js.download"></script>
+<link rel="https://api.w.org/" href="http://www.electroschematics.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.electroschematics.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.electroschematics.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.5.2">
+<link rel="shortlink" href="http://www.electroschematics.com/?p=9540">
+<link rel="alternate" type="application/json+oembed" href="http://www.electroschematics.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F">
+<link rel="alternate" type="text/xml+oembed" href="http://www.electroschematics.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F&amp;format=xml">
+<link rel="stylesheet" type="text/css" href="./Arduino Fan Speed Controlled by Temperature_files/desert.css" media="screen">
+<link rel="icon" href="http://www.electroschematics.com/wp-content/uploads/2016/05/cropped-favicon-1-32x32.jpg" sizes="32x32">
+<link rel="icon" href="http://www.electroschematics.com/wp-content/uploads/2016/05/cropped-favicon-1-192x192.jpg" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="http://www.electroschematics.com/wp-content/uploads/2016/05/cropped-favicon-1-180x180.jpg">
+<meta name="msapplication-TileImage" content="http://www.electroschematics.com/wp-content/uploads/2016/05/cropped-favicon-1-270x270.jpg">
+
+
+
+		<link rel="pingback" href="http://www.electroschematics.com/xmlrpc.php">
+
+		<script src="./Arduino Fan Speed Controlled by Temperature_files/platform.js.download" gapi_processed="true"></script>
+		<script type="text/javascript">
+			(function() {
+				var useSSL = 'https:' == document.location.protocol;
+				var src = (useSSL ? 'https:' : 'http:') +
+					'//www.googletagservices.com/tag/js/gpt.js';
+				document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+			})();
+		</script><script src="./Arduino Fan Speed Controlled by Temperature_files/gpt.js.download"></script><script id="gpt-impl-0.39005885808484897" src="./Arduino Fan Speed Controlled by Temperature_files/pubads_impl_108.js.download"></script><link rel="prefetch" href="http://tpc.googlesyndication.com/safeframe/1-0-5/html/container.html">
+				<script type="text/javascript">
+			var google_ads = [];
+			googletag.cmd.push(function() {
+
+				// modify the [800, 600] to set the max screen size to display the mobile ad size
+				var billboardMapping = googletag.sizeMapping().
+				addSize([800,375], [970, 250]).
+				addSize([0, 0], [320, 50]).
+				build();
+
+				var leaderMapping = googletag.sizeMapping().
+				addSize([800,300], [728, 90]).
+				addSize([0, 0], [320, 60]).
+				build();
+
+				var filmstripMapping = googletag.sizeMapping().
+				addSize([800,600], [300,  600]).
+				addSize([0, 0], [300, 300]).
+				build();
+
+				var wallpaperMapping = googletag.sizeMapping().
+				addSize([1490, 0], [1, 1]).
+				addSize([0, 0], []).
+				build();
+
+				google_ads.push(googletag.defineSlot('/74317539/ElectroSchematics', [[970, 250], [320, 50]], 'div-gpt-ad-billboard-smartphonebanner').setTargeting('sec', ['arduino']).defineSizeMapping(billboardMapping).addService(googletag.pubads()));
+				googletag.defineSlot('/74317539/ElectroSchematics', [300, 250], 'div-gpt-ad-medium-rectangle').setTargeting('sec', ['arduino']).addService(googletag.pubads());
+				google_ads.push(googletag.defineSlot('/74317539/ElectroSchematics', [[300, 600], [300, 300]], 'div-gpt-ad-filmstrip').setTargeting('sec', ['arduino']).defineSizeMapping(filmstripMapping).addService(googletag.pubads()));
+				google_ads.push(googletag.defineSlot('/74317539/ElectroSchematics', [[728,  90], [320, 60]], 'div-gpt-ad-leader-smartphonebanner').setTargeting('sec', ['arduino']).defineSizeMapping(leaderMapping).addService(googletag.pubads()));
+				googletag.defineSlot('/74317539/ElectroSchematics', [[300, 450]], 'div-gpt-ad-ti-featured-design').setTargeting('sec', ['tidesigns']).addService(googletag.pubads());
+				google_ads.push(googletag.defineOutOfPageSlot('/74317539/ElectroSchematics', 'div-gpt-ad-wallpaper').defineSizeMapping(wallpaperMapping).addService(googletag.pubads()));
+				googletag.pubads().enableSingleRequest();
+				googletag.pubads().enableSyncRendering();
+				googletag.enableServices();
+			});
+		</script>
+	<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f9;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29487d;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f9;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style><script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/analytics"></script><script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/analytics(1)"></script></head>
+	<body style="padding-bottom: 0px; overflow: auto;">
+	<div id="wallpaper_image" class="hide-menu"></div>
+
+	<!-- Google Tag Manager -->
+	<noscript>&lt;iframe src="//www.googletagmanager.com/ns.html?id=GTM-KMPGTZ"
+					  height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;</noscript>
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-KMPGTZ');</script>
+	<!-- End Google Tag Manager -->
+
+			<!-- analytics -->
+		<script type="text/javascript">
+			window.google_analytics_uacct = "UA-4765780-3";
+		</script>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+					(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-4765780-3', 'auto');
+			ga('send', 'pageview');
+		</script>
+		<!-- analytics -->
+		
+	<!-- facebook -->
+	<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Arduino Fan Speed Controlled by Temperature_files/Sh-3BhStODe.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Arduino Fan Speed Controlled by Temperature_files/Sh-3BhStODe(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+	<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&&appId=264778010376278&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+	<!-- facebook -->
+
+	<!-- Overlay Search -->
+	<div class="overlay-menu hidden-xs">
+		<div class="overlay-head clearfix">
+			<a href="http://www.electroschematics.com/" class="image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/logo-white.svg" alt=""></a>
+			<a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#" class="close">X</a>
+		</div>
+		<div class="overlay-cont">
+			
+<div class="search-wrap">	
+	<div class="search-input-wrap">
+		<form method="get" id="searchform" action="http://www.electroschematics.com/" class="clearfix">
+			<input type="text" name="s" id="s" class="search-input" value="">
+			<button type="submit"><i class="fa fa-search"></i></button>
+		</form>
+	</div>
+</div>			<div class="single-page content-wrap container">
+				<div class="row-cnt row">
+										<div class="col-md-12">
+						<div class="row">
+							<div class="page-section-title col-md-12">
+								<h1>Top 10 Articles</h1>
+							</div>
+							<div class="clearboth clearfix">
+																	<div class="post-wrap col-sm-6 col-md-4">
+										<div class="box" style="height: 556px;">
+											<div class="thumb square-thumb">
+												<div class="square-box">
+																											<a class="the_thumb image-cont card-image" href="http://www.electroschematics.com/13035/inexpensive-diy-gauss-meter-project/" style="background-image: url(&quot;http://www.electroschematics.com/wp-content/themes/electroschematics-v2/img/fallbak.png&quot;);"> </a>
+																									</div>
+											</div>
+											<div class="desc" style="height: 261px;">
+												<h2><a href="http://www.electroschematics.com/13035/inexpensive-diy-gauss-meter-project/">Inexpensive DIY Gauss Meter Project</a></h2>
+												<h3 class="author">T.K. Hareendran -  12/02/16</h3>
+												<div class="content-desc">Gauss meters are expensive devices and are typically not within reach of the average electronics hobbyist. Presented here <a href="http://www.electroschematics.com/13035/inexpensive-diy-gauss-meter-project/">[...]</a></div>
+											</div>
+										</div>
+									</div>
+																		<div class="post-wrap col-sm-6 col-md-4">
+										<div class="box" style="height: 556px;">
+											<div class="thumb square-thumb">
+												<div class="square-box">
+																											<a class="the_thumb image-cont card-image" href="http://www.electroschematics.com/13031/mobile-phone-battery-emulator/" style="background-image: url(&quot;http://www.electroschematics.com/wp-content/uploads/2016/11/2.Emulator-Circuit.png&quot;);"></a>
+																									</div>
+											</div>
+											<div class="desc" style="height: 261px;">
+												<h2><a href="http://www.electroschematics.com/13031/mobile-phone-battery-emulator/">Mobile Phone Battery Emulator</a></h2>
+												<h3 class="author">T.K. Hareendran -  12/01/16</h3>
+												<div class="content-desc">Recently, a mobile phone service technician wanted me to build a battery emulator that would enable him to <a href="http://www.electroschematics.com/13031/mobile-phone-battery-emulator/">[...]</a></div>
+											</div>
+										</div>
+									</div>
+																		<div class="post-wrap col-sm-6 col-md-4">
+										<div class="box" style="height: 556px;">
+											<div class="thumb square-thumb">
+												<div class="square-box">
+																											<a class="the_thumb image-cont card-image" href="http://www.electroschematics.com/13021/sine-wave-generator-circuit/" style="background-image: url(&quot;http://www.electroschematics.com/wp-content/uploads/2016/11/7.schematic_basic.png&quot;);"></a>
+																									</div>
+											</div>
+											<div class="desc" style="height: 261px;">
+												<h2><a href="http://www.electroschematics.com/13021/sine-wave-generator-circuit/">Sine Wave Generator Circuit</a></h2>
+												<h3 class="author">T.K. Hareendran -  11/30/16</h3>
+												<div class="content-desc">According to textbooks, a sine wave is a wave whose form resembles a sine curve. Often in power <a href="http://www.electroschematics.com/13021/sine-wave-generator-circuit/">[...]</a></div>
+											</div>
+										</div>
+									</div>
+																		<div class="post-wrap col-sm-6 col-md-4">
+										<div class="box" style="height: 556px;">
+											<div class="thumb square-thumb">
+												<div class="square-box">
+																											<a class="the_thumb image-cont card-image" href="http://www.electroschematics.com/13015/portable-power-inverter/" style="background-image: url(&quot;http://www.electroschematics.com/wp-content/uploads/2016/11/1.Inverter_Schematic.png&quot;);"></a>
+																									</div>
+											</div>
+											<div class="desc" style="height: 261px;">
+												<h2><a href="http://www.electroschematics.com/13015/portable-power-inverter/">Portable Power Inverter Circuit</a></h2>
+												<h3 class="author">T.K. Hareendran -  11/29/16</h3>
+												<div class="content-desc">Recently, my neighbor expressed a deep interest in building a low-power inverter from scratch. This portable power inverter <a href="http://www.electroschematics.com/13015/portable-power-inverter/">[...]</a></div>
+											</div>
+										</div>
+									</div>
+																		<div class="post-wrap col-sm-6 col-md-4">
+										<div class="box" style="height: 556px;">
+											<div class="thumb square-thumb">
+												<div class="square-box">
+																											<a class="the_thumb image-cont card-image" href="http://www.electroschematics.com/13002/13002/" style="background-image: url(&quot;http://www.electroschematics.com/wp-content/uploads/2016/10/Firmware-Organization-Chart.png&quot;);"></a>
+																									</div>
+											</div>
+											<div class="desc" style="height: 261px;">
+												<h2><a href="http://www.electroschematics.com/13002/13002/">Projector Hushbox with the STM32F4 – Firmware</a></h2>
+												<h3 class="author">Joshua Bishop -  11/01/16</h3>
+												<div class="content-desc">By far, the most time-consuming portion of this project was the firmware. I tried to create a system <a href="http://www.electroschematics.com/13002/13002/">[...]</a></div>
+											</div>
+										</div>
+									</div>
+																		<div class="post-wrap col-sm-6 col-md-4">
+										<div class="box" style="height: 556px;">
+											<div class="thumb square-thumb">
+												<div class="square-box">
+																											<a class="the_thumb image-cont card-image" href="http://www.electroschematics.com/13006/wireless-led-bulb/" style="background-image: url(&quot;http://www.electroschematics.com/wp-content/uploads/2016/10/4.Demo-Proto.jpg&quot;);"></a>
+																									</div>
+											</div>
+											<div class="desc" style="height: 261px;">
+												<h2><a href="http://www.electroschematics.com/13006/wireless-led-bulb/">Wireless LED Bulb</a></h2>
+												<h3 class="author">T.K. Hareendran -  10/31/16</h3>
+												<div class="content-desc">Researchers predict that wireless power will make a significant contribution to energy supplies in the near future. The <a href="http://www.electroschematics.com/13006/wireless-led-bulb/">[...]</a></div>
+											</div>
+										</div>
+									</div>
+																		<div class="post-wrap col-sm-6 col-md-4">
+										<div class="box" style="height: 556px;">
+											<div class="thumb square-thumb">
+												<div class="square-box">
+																											<a class="the_thumb image-cont card-image" href="http://www.electroschematics.com/12995/projector-hushbox-hardware/" style="background-image: url(&quot;http://www.electroschematics.com/wp-content/uploads/2016/10/Screen-Shot-2016-10-19-at-3.31.35-PMOct-19.png&quot;);"></a>
+																									</div>
+											</div>
+											<div class="desc" style="height: 261px;">
+												<h2><a href="http://www.electroschematics.com/12995/projector-hushbox-hardware/">Projector Hushbox with the STM32F4 – Hardware</a></h2>
+												<h3 class="author">Joshua Bishop -  10/25/16</h3>
+												<div class="content-desc">In my family, we’ve never had a normal television set, using projectors for our entertainment needs instead. Now, <a href="http://www.electroschematics.com/12995/projector-hushbox-hardware/">[...]</a></div>
+											</div>
+										</div>
+									</div>
+																		<div class="post-wrap col-sm-6 col-md-4">
+										<div class="box" style="height: 556px;">
+											<div class="thumb square-thumb">
+												<div class="square-box">
+																											<a class="the_thumb image-cont card-image" href="http://www.electroschematics.com/12988/desktop-smoke-generator/" style="background-image: url(&quot;http://www.electroschematics.com/wp-content/uploads/2016/10/SG_1.png&quot;);"></a>
+																									</div>
+											</div>
+											<div class="desc" style="height: 261px;">
+												<h2><a href="http://www.electroschematics.com/12988/desktop-smoke-generator/">Desktop Smoke Generator</a></h2>
+												<h3 class="author">T.K. Hareendran -  10/13/16</h3>
+												<div class="content-desc">I recently decided to do some research on electric smoke generators and was surprised to learn that ready-made <a href="http://www.electroschematics.com/12988/desktop-smoke-generator/">[...]</a></div>
+											</div>
+										</div>
+									</div>
+																		<div class="post-wrap col-sm-6 col-md-4">
+										<div class="box" style="height: 556px;">
+											<div class="thumb square-thumb">
+												<div class="square-box">
+																											<a class="the_thumb image-cont card-image" href="http://www.electroschematics.com/12970/arduino-datalogger-memory-card/" style="background-image: url(&quot;http://www.electroschematics.com/wp-content/uploads/2016/10/8.-lm35_setup.png&quot;);"></a>
+																									</div>
+											</div>
+											<div class="desc" style="height: 261px;">
+												<h2><a href="http://www.electroschematics.com/12970/arduino-datalogger-memory-card/">Arduino Datalogger with Memory Card</a></h2>
+												<h3 class="author">T.K. Hareendran -  10/04/16</h3>
+												<div class="content-desc">How do you save data from an Arduino-based device to a memory card? Fortunately, a microSD card and <a href="http://www.electroschematics.com/12970/arduino-datalogger-memory-card/">[...]</a></div>
+											</div>
+										</div>
+									</div>
+																		<div class="post-wrap col-sm-6 col-md-4">
+										<div class="box">
+											<div class="thumb square-thumb">
+												<div class="square-box">
+																											<a class="the_thumb image-cont card-image" href="http://www.electroschematics.com/12964/compact-2s-lipo-battery-charger/" style="background-image: url(&quot;http://www.electroschematics.com/wp-content/uploads/2016/09/2.chgr_circuit.png&quot;);"></a>
+																									</div>
+											</div>
+											<div class="desc" style="">
+												<h2><a href="http://www.electroschematics.com/12964/compact-2s-lipo-battery-charger/">Compact 2S LiPo Battery Charger</a></h2>
+												<h3 class="author">T.K. Hareendran -  09/28/16</h3>
+												<div class="content-desc">The compact LiPo battery charger introduced here can be used to charge almost all standard 2S LiPo battery <a href="http://www.electroschematics.com/12964/compact-2s-lipo-battery-charger/">[...]</a></div>
+											</div>
+										</div>
+									</div>
+																</div>
+						</div>
+					</div>
+				</div>
+			</div>
+						<div class="footer-wrap" style="clear: both;">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-2">
+						<h2>The Basics</h2>
+						<ul class="basics">
+							<li><a>About Us</a></li>
+							<li><a href="http://www.electroschematics.com/contact-us">Contact Us</a></li>
+							<li><a href="http://www.electroschematics.com/participate">Participate</a></li>
+							<li><a href="http://www.aspencore.com/privacy-policy" target="_blank">Privacy Policy</a></li>
+							<li><a href="http://www.aspencore.com/terms-of-use" target="_blank">Terms of Use</a></li>
+						</ul>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-2">
+						<h2>For Advertisers</h2>
+						<ul class="advertisers">
+							<li><a href="http://go.aspencore.com/contactus" target="_blank">Contact Sales</a></li>
+							<li><a href="http://go.aspencore.com/mediakit" target="_blank">Media Guide Request</a></li>
+						</ul>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-4">
+						<h2>Aspencore Network</h2>
+						<ul class="network">
+							<li>ElectroSchematics</li>
+							<li><a href="http://www.electronics-tutorials.ws/" target="_blank">Electronics Tutorials</a></li>
+							<li><a href="http://www.electronicproducts.com/" target="_blank">Electronic Products</a></li>
+							<li><a href="http://www.21ic.com/" target="_blank">21IC</a></li>
+							<li><a href="http://embedded-control-europe.com/" target="_blank">Embedded Control Europe</a></li>
+							<li><a href="http://www.elektroda.pl/" target="_blank">Elektroda</a></li>
+							<li><a href="http://www.eeweb.com/" target="_blank">EEWeb</a></li>
+							<li><a href="http://www.mikrocontroller.net/en" target="_blank">Mikrocontroller</a></li>
+							<li><a href="http://www.engineersgarage.com/" target="_blank">Engineers Garage</a></li>
+							<li><a href="http://www.eem.com/" target="_blank">EEM</a></li>
+							<li><a href="http://www.embedded-know-how.com/" target="_blank">Embedded Know How</a></li>
+						</ul>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-4">
+						<h2>Connect With Us</h2>
+						<ul class="social">
+							<li><a href="https://www.facebook.com/groups/electroschematics/" rel="nofollow" target="_blank"><span class="symbol"></span><span class="desc">Facebook</span></a></li>
+							<li><a href="https://www.youtube.com/user/ElectroSchematics"><span class="symbol"></span><span class="desc">YouTube</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="bttm-most">
+				<div class="container">
+					<div class="row">
+						<div class="col-a col-sm-6 col-md-6">
+							All contents are Copyright © 2016 by AspenCore, Inc. All Rights Reserved.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		</div>
+	</div>
+	<!-- End -->
+
+	<!-- Overlay Mouser panel -->
+<div class="overlay-mouser">
+	<div class="overlay-mouser-cont">
+		<div class="container">
+			<div class="section-a">
+				 &nbsp;<a class="close-panel" href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#"><span>Close</span>&nbsp; <i class="fa fa-times-circle"></i></a>
+			</div>
+			<div class="section-b">
+				<a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http" target="_blank" class="mouser-site-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/ic-logo.svg" alt="" class="mouser-site-click"></a> <!--<span>Browse Products</span>-->
+			</div>
+			<div class="section-c">
+				<ul class="products-list">
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/amplifiersandlinears/amplifiersandlinears.page?HQS=hpa-null-null-elschemflyaway-bs-lp-amplifiers-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Amplifiers</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/interface/interface.page?HQS=hpa-null-null-elschemflyaway-bs-lp-interface-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Interface</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/non-isolated-dc-dc-switching-regulator-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-nonisolatedDCDC-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Non-Isolated DC/DC</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/voltage-reference-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-voltageref-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Voltage References</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/audio/overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-audio-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Audio</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/linear-regulators-ldo-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-linearregulator-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Linear Regulator (LDO)</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/powermanagement/power_portal.page?HQS=hpa-null-null-elschemflyaway-bs-lp-pwrmgmt-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Power Management</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/webench/overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-WEBENCH-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Webench</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/battery-management-products-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-battery-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Battery Management</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/logic/home_overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-logic-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Logic</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/power-management-multi-channel-ic-pmic-solutions-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-pmic-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Power Management IC (PMIC)</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/general/docs/refdesignsearchresults.tsp?HQS=hpa-null-null-elschemflyaway-bs-lp-TIDesigns-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">TI Designs</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/clockandtiming/clock_and_timing.page?HQS=hpa-null-null-elschemflyaway-bs-lp-clocks-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Clock and Timing</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/mosfet-and-igbt-gate-drivers-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-MOSFET-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">MOSFET and IGBT Gate Drivers</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/power-modules-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-powermodules-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Power Modules</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?https://store.ti.com?HQS=hpa-null-null-elschemflyaway-bs-store-store-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">TI Store</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/dataconverters/data_converter.page?HQS=hpa-null-null-elschemflyaway-bs-lp-dataconverters-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Data Converters</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/motordrivers/overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-motordrivers-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Motor Drivers</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/sensors/overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-sensors-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Sensors</a></li>
+					<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://my.ti.com?HQS=hpa-null-null-elschemflyaway-bs-myti-myti-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">MyTI Registration</a></li>
+				</ul>
+			</div>
+
+		</div>
+		<div class="visit-ti">
+			<a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com?HQS=hpa-null-null-elschemflyaway-bs-lp-homepage-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont">visit ti.com<img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow-white.png"></a>
+		</div>
+	</div>
+
+</div>
+<!-- End -->	<div id="topBar" class="top-bar-1-wrap mbile" style="position: fixed; top: 0px; width: 100%;">
+		<div class="container">
+			<div class="row">
+				<div class="menu col-xs-3 col-sm-4 col-md-4">
+					<div id="show" class="orb"></div>
+				</div>
+				<div class="main-logo col-xs-6 col-sm-4 col-md-4">
+					<a href="http://www.electroschematics.com/" class="image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/main-logo.svg" alt=""></a>
+				</div>
+				<div class="col-xs-3 col-sm-4 col-md-4">
+					<div class="search mbile"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="top-bar-1-wrap dsktop">
+		<div class="topbar-most clearfix">
+			<div class="col-xs-3 col-sm-3 col-md-3">
+				<div class="user-login">
+											<a href="http://www.electroschematics.com/log-in"><i class="fa fa-user"></i> &nbsp;&nbsp;Login</a>
+									</div>
+			</div>
+			<div class="main-logo col-xs-6 col-sm-6 col-md-6 hover-active">
+				<a href="http://www.electroschematics.com/" class="image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/main-logo.svg" alt=""></a>
+			</div>
+			<div class="for-overlay col-xs-3 col-sm-3 col-md-3" data-mode="search">
+				<div class="search"></div>
+			</div>
+		</div>
+		<div class="sub-top-bar hide-bar" style="">
+			<div class="hidden-xs clearfix">
+
+				<div class="col-b">
+
+				</div>
+
+				<div class="col-a">
+					<ul id="main-menu" class="menu clearfix"><li id="menu-item-12664" class="menu-item-has-children"><a href="http://www.electroschematics.com/various/">Projects</a>
+<ul class="sub-menu" style="display: none;">
+	<li><ul class="container"><li id="menu-item-12650" class="current-post-ancestor current-menu-parent current-post-parent"><a href="http://www.electroschematics.com/arduino/">Arduino</a></li><li id="menu-item-12656"><a href="http://www.electroschematics.com/lights/">Lights</a></li><li id="menu-item-12665"><a href="http://www.electroschematics.com/various/datasheet/">Datasheets</a></li><li id="menu-item-12648"><a href="http://www.electroschematics.com/555-circuits/">555</a></li><li id="menu-item-12658"><a href="http://www.electroschematics.com/power-supply/">Power supply</a></li><li id="menu-item-12654"><a href="http://www.electroschematics.com/ece-projects/">ECE projects</a></li><li id="menu-item-12649"><a href="http://www.electroschematics.com/alarm/">Alarms</a></li><li id="menu-item-12659"><a href="http://www.electroschematics.com/radio/">Radio</a></li><li id="menu-item-12657"><a href="http://www.electroschematics.com/measurement/">Measure</a></li><li id="menu-item-12651"><a href="http://www.electroschematics.com/audio/">Audio</a></li><li id="menu-item-12661"><a href="http://www.electroschematics.com/solar-projects/">Solar</a></li><li id="menu-item-12670"><a href="http://www.electroschematics.com/various/useful/">Useful</a></li><li id="menu-item-12653"><a href="http://www.electroschematics.com/diy/">DIY</a></li><li id="menu-item-12662" class="current-post-ancestor current-menu-parent current-post-parent"><a href="http://www.electroschematics.com/tested/">Tested</a></li><li id="menu-item-12663"><a href="http://www.electroschematics.com/theory/">Theory</a></li><li id="menu-item-12655"><a href="http://www.electroschematics.com/hobby/">Hobby</a></li><li id="menu-item-12652"><a href="http://www.electroschematics.com/basic-electronics/">Basic</a></li></ul></li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</ul>
+</li>
+<li id="menu-item-12672"><a href="http://www.electroschematics.com/tools/">Tools</a></li>
+<li id="menu-item-12673" class="menu-item-has-children tutorials-cont"><a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#">Tutorials</a>
+<ul class="sub-menu" style="display: none;">
+	<li><ul class="container"><li id="menu-item-12675"><a href="http://www.electroschematics.com/tag/arduino-tutorial/">Arduino Tutorial</a></li><li id="menu-item-12676"><a href="http://www.electroschematics.com/tag/avr-tutorial/">AVR Tutorial</a></li><li id="menu-item-12677"><a href="http://www.electroschematics.com/tag/pic-tutorial/">PIC Tutorial</a></li></ul></li>
+	
+	
+</ul>
+</li>
+<li id="menu-item-10563"><a title="electronics labs" href="http://www.electroschematics.com/labs/">Labs</a></li>
+<li id="menu-item-8571"><a title="electronics engineering Q&amp;A" href="http://www.electroschematics.com/qa/">Q&amp;A</a></li>
+<li id="menu-item-12679"><a href="http://www.electroschematics.com/electronics-quizzes/">Quizzes</a></li>
+<li id="menu-item-12846"><a href="http://ti-content-syndication.electroschematics.com/">Reference Designs</a></li>
+<li id="menu-item-8572"><a title="contact page" rel="nofollow" href="http://www.electroschematics.com/contact-us/">Contact</a></li>
+</ul>				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="main" style="margin: 122px auto 0px; top: 0px;">
+
+<div class="body-frame body-single">
+			<div class="side-menu mbile">
+			<div id="side-menu-head" class="side-menu-head clearfix">
+				<a href="http://www.electroschematics.com/" class="image-cont"><img class="logo" src="./Arduino Fan Speed Controlled by Temperature_files/lg-white-mbl.svg" alt=""></a>
+				<a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#" class="close">X</a>
+			</div>
+			<div class="the-list">
+
+				
+<div class="search-wrap">	
+	<div class="search-input-wrap">
+		<form method="get" id="searchform" action="http://www.electroschematics.com/" class="clearfix">
+			<input type="text" name="s" id="s" class="search-input" value="">
+			<button type="submit"><i class="fa fa-search"></i></button>
+		</form>
+	</div>
+</div>
+				  <ul id="sm-main-menu" class="sm-menu"><li class="menu-item-has-children"><a href="http://www.electroschematics.com/various/">Projects</a>
+<ul class="sub-menu" style="display: none;">
+	<li><ul class="container"><li class="current-post-ancestor current-menu-parent current-post-parent"><a href="http://www.electroschematics.com/arduino/">Arduino</a></li><li><a href="http://www.electroschematics.com/lights/">Lights</a></li><li><a href="http://www.electroschematics.com/various/datasheet/">Datasheets</a></li><li><a href="http://www.electroschematics.com/555-circuits/">555</a></li><li><a href="http://www.electroschematics.com/power-supply/">Power supply</a></li><li><a href="http://www.electroschematics.com/ece-projects/">ECE projects</a></li><li><a href="http://www.electroschematics.com/alarm/">Alarms</a></li><li><a href="http://www.electroschematics.com/radio/">Radio</a></li><li><a href="http://www.electroschematics.com/measurement/">Measure</a></li><li><a href="http://www.electroschematics.com/audio/">Audio</a></li><li><a href="http://www.electroschematics.com/solar-projects/">Solar</a></li><li><a href="http://www.electroschematics.com/various/useful/">Useful</a></li><li><a href="http://www.electroschematics.com/diy/">DIY</a></li><li class="current-post-ancestor current-menu-parent current-post-parent"><a href="http://www.electroschematics.com/tested/">Tested</a></li><li><a href="http://www.electroschematics.com/theory/">Theory</a></li><li><a href="http://www.electroschematics.com/hobby/">Hobby</a></li><li><a href="http://www.electroschematics.com/basic-electronics/">Basic</a></li></ul></li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</ul>
+</li>
+<li><a href="http://www.electroschematics.com/tools/">Tools</a></li>
+<li class="menu-item-has-children tutorials-cont"><a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#">Tutorials</a>
+<ul class="sub-menu" style="display: none;">
+	<li><ul class="container"><li><a href="http://www.electroschematics.com/tag/arduino-tutorial/">Arduino Tutorial</a></li><li><a href="http://www.electroschematics.com/tag/avr-tutorial/">AVR Tutorial</a></li><li><a href="http://www.electroschematics.com/tag/pic-tutorial/">PIC Tutorial</a></li></ul></li>
+	
+	
+</ul>
+</li>
+<li><a title="electronics labs" href="http://www.electroschematics.com/labs/">Labs</a></li>
+<li><a title="electronics engineering Q&amp;A" href="http://www.electroschematics.com/qa/">Q&amp;A</a></li>
+<li><a href="http://www.electroschematics.com/electronics-quizzes/">Quizzes</a></li>
+<li><a href="http://ti-content-syndication.electroschematics.com/">Reference Designs</a></li>
+<li><a title="contact page" rel="nofollow" href="http://www.electroschematics.com/contact-us/">Contact</a></li>
+</ul>				<div class="footer-wrap" style="clear: both;">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-2">
+						<h2>The Basics</h2>
+						<ul class="basics">
+							<li><a>About Us</a></li>
+							<li><a href="http://www.electroschematics.com/contact-us">Contact Us</a></li>
+							<li><a href="http://www.electroschematics.com/participate">Participate</a></li>
+							<li><a href="http://www.aspencore.com/privacy-policy" target="_blank">Privacy Policy</a></li>
+							<li><a href="http://www.aspencore.com/terms-of-use" target="_blank">Terms of Use</a></li>
+						</ul>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-2">
+						<h2>For Advertisers</h2>
+						<ul class="advertisers">
+							<li><a href="http://go.aspencore.com/contactus" target="_blank">Contact Sales</a></li>
+							<li><a href="http://go.aspencore.com/mediakit" target="_blank">Media Guide Request</a></li>
+						</ul>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-4">
+						<h2>Aspencore Network</h2>
+						<ul class="network">
+							<li>ElectroSchematics</li>
+							<li><a href="http://www.electronics-tutorials.ws/" target="_blank">Electronics Tutorials</a></li>
+							<li><a href="http://www.electronicproducts.com/" target="_blank">Electronic Products</a></li>
+							<li><a href="http://www.21ic.com/" target="_blank">21IC</a></li>
+							<li><a href="http://embedded-control-europe.com/" target="_blank">Embedded Control Europe</a></li>
+							<li><a href="http://www.elektroda.pl/" target="_blank">Elektroda</a></li>
+							<li><a href="http://www.eeweb.com/" target="_blank">EEWeb</a></li>
+							<li><a href="http://www.mikrocontroller.net/en" target="_blank">Mikrocontroller</a></li>
+							<li><a href="http://www.engineersgarage.com/" target="_blank">Engineers Garage</a></li>
+							<li><a href="http://www.eem.com/" target="_blank">EEM</a></li>
+							<li><a href="http://www.embedded-know-how.com/" target="_blank">Embedded Know How</a></li>
+						</ul>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-4">
+						<h2>Connect With Us</h2>
+						<ul class="social">
+							<li><a href="https://www.facebook.com/groups/electroschematics/" rel="nofollow" target="_blank"><span class="symbol"></span><span class="desc">Facebook</span></a></li>
+							<li><a href="https://www.youtube.com/user/ElectroSchematics"><span class="symbol"></span><span class="desc">YouTube</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="bttm-most">
+				<div class="container">
+					<div class="row">
+						<div class="col-a col-sm-6 col-md-6">
+							All contents are Copyright © 2016 by AspenCore, Inc. All Rights Reserved.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>				
+			</div>
+		</div>	<div class="body-cont">
+		<div class="mask-cont clearfix">
+			<div class="single-page content-wrap container">
+				<div class="row-cnt row">
+
+											<div class="home-top-ads">
+							<div id="text-104" class="widgets widget_text">			<div class="textwidget"><div class="billboard-wrapper">
+<div id="div-gpt-ad-billboard-smartphonebanner" data-google-query-id="CPmD68b-69ECFcWkaAodtLoNww"><script type="text/javascript">
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-billboard-smartphonebanner'); });
+</script><script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/ads" id="sae-script-1"></script><div id="div-gpt-ad-billboard-smartphonebanner_ad_container">
+<ins style="width: 970px; height: 250px; display: inline-table; position: relative; border: 0px; vertical-align: bottom;"><ins style="width: 970px; height: 250px; display: block; position: relative; border: 0px;"><iframe id="google_ads_iframe_/74317539/ElectroSchematics_0" title="3rd party ad content" name="google_ads_iframe_/74317539/ElectroSchematics_0" width="970" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; position: absolute; top: 0px; left: 0px;" src="./Arduino Fan Speed Controlled by Temperature_files/saved_resource.html"></iframe></ins></ins></div>
+<script>googletag.impl.pubads.createDomIframe("div-gpt-ad-billboard-smartphonebanner_ad_container" ,"/74317539/ElectroSchematics_0",false,false);</script>
+</div>
+<div class="ads_title_home">
+Advertisement
+</div>
+</div>
+</div>
+		</div>						</div>
+					
+					<div class="col-sm-12 col-md-12">
+						<div class="breadcrumb">
+							<!-- Breadcrumb NavXT 5.4.0 -->
+<a title="Back Home" href="http://www.electroschematics.com/" class="home">Home</a><span class="separator">&nbsp;/&nbsp;</span><span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to the Arduino category archives." href="http://www.electroschematics.com/arduino/" class="taxonomy category"><span property="name">Arduino</span></a><meta property="position" content="2"></span><span class="separator">&nbsp;/&nbsp;</span><span property="itemListElement" typeof="ListItem"><span property="name">Fan Speed Controlled by Temperature and Arduino</span><meta property="position" content="3"></span>						</div>
+					</div>
+					<div class="col-md-8 clearboth">
+											<div class="section row">
+							<div class="single-wrap col-md-12">
+								<div class="content-cont">
+
+									<div class="col-sm-6 col-md-6 no-padd">
+										<div class="thumb-feat">
+																																	   <a class="the_thumb image-cont" data-card="false" href="./Arduino Fan Speed Controlled by Temperature_files/arduino-temperature-fan-speed-control.png" rel="lightbox"><img width="556" height="500" src="./Arduino Fan Speed Controlled by Temperature_files/arduino-temperature-fan-speed-control.png" class="attachment-full size-full wp-post-image" alt="arduino temperature fan speed control" srcset="http://www.electroschematics.com/wp-content/uploads/2014/01/arduino-temperature-fan-speed-control.png 556w, http://www.electroschematics.com/wp-content/uploads/2014/01/arduino-temperature-fan-speed-control-100x89.png 100w, http://www.electroschematics.com/wp-content/uploads/2014/01/arduino-temperature-fan-speed-control-400x359.png 400w, http://www.electroschematics.com/wp-content/uploads/2014/01/arduino-temperature-fan-speed-control-550x494.png 550w" sizes="(max-width: 556px) 100vw, 556px"></a>
+																					</div>
+									</div>
+									<div class="desc col-sm-6 col-md-6">
+										<h1>Fan Speed Controlled by Temperature and Arduino</h1>										<div class="author">
+											<a href="http://www.electroschematics.com/author/admin/">P. Marian</a>
+										</div>
+
+										<!-- Social Buttons -->
+										<div id="social_buttons" style="margin: 15px 0;">
+																						<span class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/" target="_blank" class="image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/fb-dark.png" width="25px" alt="Share"></a></span>
+											<span class="twitter">
+												<a target="_blank" rel="nofollow" href="https://twitter.com/share" data-via="electrocircuits" class="image-cont">
+													<img src="./Arduino Fan Speed Controlled by Temperature_files/tw-dark.png" width="25px" alt="Tweet">
+												</a>
+												<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+											</span>
+											<span class="ask_qa"><a href="http://www.electroschematics.com/qa/" target="_blank" title="ask a question" class="image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/icn-question-orb.png" width="25px" alt=""></a></span>
+										</div>
+										<div class="col-md-12 no-padd">
+											<div class="posts-tags"><ul><li><a href="http://www.electroschematics.com/tag/lm35-circuits">LM35</a></li><li><a href="http://www.electroschematics.com/tag/temperature-sensors">temperature sensors</a></li></ul></div>										</div>
+
+									</div>
+									<div class="clear-b"></div>
+									<div class="main-wrap">
+									<p>I made this project because I wanted a way to automatically control the speed of a DC fan according to the temperature read by a LM35 sensor. I had a few problems with the PWM part mainly because the fan made a disturbing noise so I had to add a simple RC filter at the output of the PWM pin on the Arduino board.<br>
+<span id="more-9540"></span></p>
+<h2>Schematic of the Automatic Fan Speed Controller</h2>
+<p><a href="./Arduino Fan Speed Controlled by Temperature_files/arduino-temperature-fan-speed-control.png" target="_blank" rel="lightbox[9540]" class="image-cont"><img class="aligncenter size-large wp-image-9545" src="./Arduino Fan Speed Controlled by Temperature_files/arduino-temperature-fan-speed-control-550x494.png" alt="arduino temperature fan speed control" width="550" height="494" srcset="http://www.electroschematics.com/wp-content/uploads/2014/01/arduino-temperature-fan-speed-control-550x494.png 550w, http://www.electroschematics.com/wp-content/uploads/2014/01/arduino-temperature-fan-speed-control-100x89.png 100w, http://www.electroschematics.com/wp-content/uploads/2014/01/arduino-temperature-fan-speed-control-400x359.png 400w, http://www.electroschematics.com/wp-content/uploads/2014/01/arduino-temperature-fan-speed-control.png 556w" sizes="(max-width: 550px) 100vw, 550px"></a></p>
+<div class="datasheet"><a href="http://www.electroschematics.com/6393/lm35-datasheet/">LM35 datasheet</a></div>
+<p><strong>Arduino Sketch</strong></p>
+<pre class="wp-code-highlight prettyprint linenums:1 prettyprinted"><ol class="linenums"><li value="1" class="L0"><span class="com">#include</span><span class="pln"> </span></li><li class="L1"><span class="com">//source: http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/</span></li><li class="L2"><span class="typ">LiquidCrystal</span><span class="pln"> lcd</span><span class="pun">(</span><span class="lit">7</span><span class="pun">,</span><span class="lit">6</span><span class="pun">,</span><span class="lit">5</span><span class="pun">,</span><span class="lit">4</span><span class="pun">,</span><span class="lit">3</span><span class="pun">,</span><span class="lit">2</span><span class="pun">);</span></li><li class="L3"><span class="kwd">int</span><span class="pln"> tempPin </span><span class="pun">=</span><span class="pln"> A1</span><span class="pun">;</span><span class="pln">   </span><span class="com">// the output pin of LM35</span></li><li class="L4"><span class="kwd">int</span><span class="pln"> fan </span><span class="pun">=</span><span class="pln"> </span><span class="lit">11</span><span class="pun">;</span><span class="pln">       </span><span class="com">// the pin where fan is</span></li><li class="L5"><span class="kwd">int</span><span class="pln"> led </span><span class="pun">=</span><span class="pln"> </span><span class="lit">8</span><span class="pun">;</span><span class="pln">        </span><span class="com">// led pin</span></li><li class="L6"><span class="kwd">int</span><span class="pln"> temp</span><span class="pun">;</span></li><li class="L7"><span class="kwd">int</span><span class="pln"> tempMin </span><span class="pun">=</span><span class="pln"> </span><span class="lit">30</span><span class="pun">;</span><span class="pln">   </span><span class="com">// the temperature to start the fan</span></li><li class="L8"><span class="kwd">int</span><span class="pln"> tempMax </span><span class="pun">=</span><span class="pln"> </span><span class="lit">70</span><span class="pun">;</span><span class="pln">   </span><span class="com">// the maximum temperature when fan is at 100%</span></li><li class="L9"><span class="kwd">int</span><span class="pln"> fanSpeed</span><span class="pun">;</span></li><li class="L0"><span class="kwd">int</span><span class="pln"> fanLCD</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">void</span><span class="pln"> setup</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">  pinMode</span><span class="pun">(</span><span class="pln">fan</span><span class="pun">,</span><span class="pln"> OUTPUT</span><span class="pun">);</span></li><li class="L4"><span class="pln">  pinMode</span><span class="pun">(</span><span class="pln">led</span><span class="pun">,</span><span class="pln"> OUTPUT</span><span class="pun">);</span></li><li class="L5"><span class="pln">  pinMode</span><span class="pun">(</span><span class="pln">tempPin</span><span class="pun">,</span><span class="pln"> INPUT</span><span class="pun">);</span></li><li class="L6"><span class="pln">  lcd</span><span class="pun">.</span><span class="kwd">begin</span><span class="pun">(</span><span class="lit">16</span><span class="pun">,</span><span class="lit">2</span><span class="pun">);</span><span class="pln">  </span></li><li class="L7"><span class="pun">}</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="kwd">void</span><span class="pln"> loop</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">  </span></li><li class="L0"><span class="pln">   temp </span><span class="pun">=</span><span class="pln"> readTemp</span><span class="pun">();</span><span class="pln">     </span><span class="com">// get the temperature</span></li><li class="L1"><span class="pln">   </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">temp </span><span class="pun">&amp;</span><span class="pln">lt</span><span class="pun">;</span><span class="pln"> tempMin</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="com">// if temp is lower than minimum temp fanSpeed = 0; // fan is not spinning digitalWrite(fan, LOW); } if((temp &amp;gt;= tempMin) &amp;amp;&amp;amp; (temp &amp;lt;= tempMax)) { // if temperature is higher than minimum temp fanSpeed = map(temp, tempMin, tempMax, 32, 255); // the actual speed of fan fanLCD = map(temp, tempMin, tempMax, 0, 100); // speed of fan to display on LCD analogWrite(fan, fanSpeed); // spin the fan at the fanSpeed speed } if(temp &amp;gt; tempMax) {        // if temp is higher than tempMax</span></li><li class="L2"><span class="pln">     digitalWrite</span><span class="pun">(</span><span class="pln">led</span><span class="pun">,</span><span class="pln"> HIGH</span><span class="pun">);</span><span class="pln">  </span><span class="com">// turn on led </span></li><li class="L3"><span class="pln">   </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">                    </span><span class="com">// else turn of led</span></li><li class="L4"><span class="pln">     digitalWrite</span><span class="pun">(</span><span class="pln">led</span><span class="pun">,</span><span class="pln"> LOW</span><span class="pun">);</span><span class="pln"> </span></li><li class="L5"><span class="pln">   </span><span class="pun">}</span></li><li class="L6"><span class="pln">   </span></li><li class="L7"><span class="pln">   lcd</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"TEMP: "</span><span class="pun">);</span></li><li class="L8"><span class="pln">   lcd</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">temp</span><span class="pun">);</span><span class="pln">      </span><span class="com">// display the temperature</span></li><li class="L9"><span class="pln">   lcd</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"C "</span><span class="pun">);</span></li><li class="L0"><span class="pln">   lcd</span><span class="pun">.</span><span class="pln">setCursor</span><span class="pun">(</span><span class="lit">0</span><span class="pun">,</span><span class="lit">1</span><span class="pun">);</span><span class="pln">   </span><span class="com">// move cursor to next line</span></li><li class="L1"><span class="pln">   lcd</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"FANS: "</span><span class="pun">);</span></li><li class="L2"><span class="pln">   lcd</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">fanLCD</span><span class="pun">);</span><span class="pln">    </span><span class="com">// display the fan speed</span></li><li class="L3"><span class="pln">   lcd</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"%"</span><span class="pun">);</span></li><li class="L4"><span class="pln">   delay</span><span class="pun">(</span><span class="lit">200</span><span class="pun">);</span></li><li class="L5"><span class="pln">   lcd</span><span class="pun">.</span><span class="pln">clear</span><span class="pun">();</span><span class="pln">   </span></li><li class="L6"><span class="pun">}</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="kwd">int</span><span class="pln"> readTemp</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">  </span><span class="com">// get the temperature and convert it to celsius</span></li><li class="L9"><span class="pln">  temp </span><span class="pun">=</span><span class="pln"> analogRead</span><span class="pun">(</span><span class="pln">tempPin</span><span class="pun">);</span></li><li class="L0"><span class="pln">  </span><span class="kwd">return</span><span class="pln"> temp </span><span class="pun">*</span><span class="pln"> </span><span class="lit">0.48828125</span><span class="pun">;</span></li><li class="L1"><span class="pun">}</span></li></ol></pre>
+<p><a href="./Arduino Fan Speed Controlled by Temperature_files/test-setup.jpg" target="_blank" rel="lightbox[9540]" class="image-cont"><img class="aligncenter size-large wp-image-9546" src="./Arduino Fan Speed Controlled by Temperature_files/test-setup-550x412.jpg" alt="test setup" width="550" height="412" srcset="http://www.electroschematics.com/wp-content/uploads/2014/01/test-setup-550x412.jpg 550w, http://www.electroschematics.com/wp-content/uploads/2014/01/test-setup-100x75.jpg 100w, http://www.electroschematics.com/wp-content/uploads/2014/01/test-setup-400x300.jpg 400w" sizes="(max-width: 550px) 100vw, 550px"></a></p>
+<p>I used an LCD shield to display the current temperature and speed of the fan, but you can use the circuit without the LCD display. You also need to select the transistor by the type of fan that you use. In my case I used the well-known BD139 transistor and a 9V battery to provide power to the fan and transistor. The LM35 temperature sensor and red led are powered with 5V from the Arduino board.</p>
+<p><strong>How does the circuit works?</strong></p>
+<p><iframe src="./Arduino Fan Speed Controlled by Temperature_files/R7lmpIAsoQQ.html" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<p>As you can see in the sketch on the first line I included the LiquidCrystal library (header) that includes useful functions to use when an LCD is connected to the Arduino board. Then I set the pins for the sensor, led and fan.</p>
+<p>The most important part is to set the variables tempMin and tempMax with your desired values. <strong>tempMin</strong> is the temperature at which the fan starts to spin and <strong>tempMax</strong> is the temperature when the red led lights warning you that the maximum temp was reached. For example if you set tempMin at 30 and tempMax at 35 then the fan will start spinning at 30°C and reach its maximum speed at 35°C.</p>
+<p>We store the temperature value in the temp variable and then use some <strong>if()</strong> functions to check if temp is lower than tempMin and if so let the fan OFF (LOW). The next <strong>if()</strong> is to check if temperature is higher than the minTemp and lower than the tempMax and if so then use the <strong>map()</strong> function to re-map the temp value from one value to another. In our case fanSpeed will have a value of 32 at tempMin and 255 at tempMax. These values are used to control the speed of the fan using PWM and the analogWrite().</p>
+<p>The fanLCD re-maps the temp to allow the display of fanSpeed in a 0 to 100% range so you can say that the speed of the fan is directly dependent of the LM35’s temperature. When the temperature reaches the value set in tempMax the fan will be at its maximum spinning velocity and the LCD will display FANS: 100% even though the temperature might increase above tempMax.</p>
+<p>The rest of the explanation can be read in the comments area of the Arduino sketch.</p>
+<p>In the next project I will make a temperature protection circuit that will turn off the power of a equipment when its temperature has reached a certain value.</p>
+<p>&nbsp;</p>
+<p>Related Products: <span data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Thermal Management&quot;}" data-sheets-userformat="{&quot;2&quot;:1,&quot;3&quot;:{&quot;1&quot;:0}}" data-sheets-formula="=HYPERLINK(&quot;https://www.arrow.com/en/products/thermal-management&quot;,&quot;Thermal Management&quot;)"><a class="in-cell-link" href="https://www.arrow.com/en/products/thermal-management" target="_blank">Thermal Management</a> | <a class="in-cell-link" href="https://www.arrow.com/en/products/thermal-management/coolers/fan-coolers" target="_blank">Fan Cooler</a></span></p>
+									</div>
+									
+
+																		<div class="clearfix content-nav">
+										<div class="prev_next">
+																							<div class="pn-holder col-md-6 col-sm-6"><div class="prev" style="height: 96px;"><a href="http://www.electroschematics.com/9541/temperature-controlled-fan/" rel="prev" class="image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/arrow_alt_left_inv.png" alt="previous"><div><span>Previous</span><br>Simple Temperature Controlled Fan</div></a></div></div>
+																																		<div class="pn-holder col-md-6 col-sm-6"><div class="next" style="height: 96px;"><a href="http://www.electroschematics.com/9548/arduino-siren-sound-alarm/" rel="next" class="image-cont"><div><span>Next</span><br>Arduino Siren Sound Alarm</div><img src="./Arduino Fan Speed Controlled by Temperature_files/arrow_alt_right_inv.png" alt="next"></a></div></div>
+																					</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="single-page-content">
+							
+<div id="widgets_for_shortcodes" class="amr-widget-area"><div class="tabber-widget widget_yarpp_widget" id="yarpp_widget-2"><h5 class="tabber-widget-title">Related Tutorials</h5><div class="yarpp-related-widget">
+<ol><li><a href="http://www.electroschematics.com/9321/arduino-room-temperature-monitor/" rel="bookmark">Arduino Room Temperature Monitor</a></li><li><a href="http://www.electroschematics.com/8998/arduino-temperature-controlled-relay/" rel="bookmark">Temperature Controlled Relay with Arduino – Tutorial #6</a></li><li><a href="http://www.electroschematics.com/6319/kitchen-exhaust-fan-controller/" rel="bookmark">Temperature Controlled Kitchen Exhaust Fan</a></li><li><a href="http://www.electroschematics.com/9820/arduino-led-ring/" rel="bookmark">Arduino LED Ring with Variable Rotational Speed</a></li></ol>
+</div>
+</div></div>
+						</div>
+						
+<div id="comments" class="comments-wrap clearfix">
+
+	<input type="hidden" name="has_view_more" id="has_view_more" value="1">
+	<input type="hidden" name="first_comment_page" id="first_comment_page" value="3">
+	<input type="hidden" name="recent_comment_page" id="recent_comment_page" value="">
+	<h2 class="comments-count">126 Comments		<div class="toggle-close"></div>
+		<div class="toggle-open"></div>
+	</h2>
+	<div class="comment-content">
+		<div class="comment-form-cont">
+							<div id="respond" class="comment-respond">
+			<h3 id="reply-title" class="comment-reply-title"></h3><h2>Join the conversation!</h2> <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#respond" style="display:none;">Cancel reply</a></small><div class="notice_error">Error! Please fill all fields.</div><p class="must-log-in">You must be <a href="http://www.electroschematics.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F">logged in</a> to post a comment.</p>		</div><!-- #respond -->
+				</div>
+
+		<div class="comment-list-cont">
+			
+				<ul class="comment-list">
+										
+<li class="comment byuser comment-author-giorgos81 even thread-even depth-1" id="li-comment-1902408">
+    <div id="comment-1902408" class="clearfix">
+        <div class="col-a">
+            <img alt="" src="./Arduino Fan Speed Controlled by Temperature_files/e0182783857157a7cfca71fa1ded4e1a" srcset="http://2.gravatar.com/avatar/e0182783857157a7cfca71fa1ded4e1a?s=100&amp;d=identicon&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50">        </div>
+        <div class="col-b">
+            <div class="comment-author vcard">
+                                <cite class="fn">giorgos81</cite>            </div>
+            
+            <div class="comment-text">
+                <p>THE CODE does not work, there is a plan CONNECTION;</p>
+            </div>
+
+            <div class="comment-meta commentmetadata clearfix">
+                <div class="date-time col-sm-6 col-md-6 no-padd">
+                    Posted on <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#comment-1902408">January 11th 2017 | 1:16 am</a>
+                </div>
+                <div class="reply col-sm-6 col-md-6 no-padd">
+                    <span class="glyphicon glyphicon-share-alt"></span> <a rel="nofollow" class="comment-reply-login" href="http://www.electroschematics.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F">Log in to Reply</a>                </div>
+            </div>
+        </div>
+            </div>
+
+</li><!-- #comment-## -->
+
+<li class="comment byuser comment-author-dougwirelesskiwi-com odd alt thread-odd thread-alt depth-1" id="li-comment-1902366">
+    <div id="comment-1902366" class="clearfix">
+        <div class="col-a">
+            <img alt="" src="./Arduino Fan Speed Controlled by Temperature_files/b505ce446553d3e0d94b043dda15d979" srcset="http://2.gravatar.com/avatar/b505ce446553d3e0d94b043dda15d979?s=100&amp;d=identicon&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50">        </div>
+        <div class="col-b">
+            <div class="comment-author vcard">
+                                <cite class="fn">dougwirelesskiwi-com</cite>            </div>
+            
+            <div class="comment-text">
+                <p>Hi,<br>
+ I’m a newbie to arduino .<br>
+On this line of code: “(temp &lt; tempMax)) { // if temperature is higher than minimum temp ” I get the error message “exit status 1<br>
+‘lt’ was not declared in this scope” when I try to verify the code. What have I done wrong? What does &amp;lt mean anyway?<br>
+This is a great project for a ‘newbie” and I hope to expand on it when I learn more about programming arduino.<br>
+Thanks</p>
+            </div>
+
+            <div class="comment-meta commentmetadata clearfix">
+                <div class="date-time col-sm-6 col-md-6 no-padd">
+                    Posted on <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#comment-1902366">December 31st 2016 | 6:15 am</a>
+                </div>
+                <div class="reply col-sm-6 col-md-6 no-padd">
+                    <span class="glyphicon glyphicon-share-alt"></span> <a rel="nofollow" class="comment-reply-login" href="http://www.electroschematics.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F">Log in to Reply</a>                </div>
+            </div>
+        </div>
+            </div>
+
+<ul class="children">
+
+<li class="comment byuser comment-author-tkhareendran even depth-2" id="li-comment-1902367">
+    <div id="comment-1902367" class="clearfix">
+        <div class="col-a">
+            <img alt="" src="./Arduino Fan Speed Controlled by Temperature_files/233a0fb115fa7b51a6aa4e6fa309392e" srcset="http://2.gravatar.com/avatar/233a0fb115fa7b51a6aa4e6fa309392e?s=100&amp;d=identicon&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50">        </div>
+        <div class="col-b">
+            <div class="comment-author vcard">
+                                <cite class="fn">T.K.Hareendran</cite>            </div>
+            
+            <div class="comment-text">
+                <p>&amp;lt stands for less than sign,and hence you should  replace the &amp;lt with the less than sign &lt;  .  Seems it's inserted in the code window by mistake!</p>
+            </div>
+
+            <div class="comment-meta commentmetadata clearfix">
+                <div class="date-time col-sm-6 col-md-6 no-padd">
+                    Posted on <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#comment-1902367">December 31st 2016 | 11:36 am</a>
+                </div>
+                <div class="reply col-sm-6 col-md-6 no-padd">
+                    <span class="glyphicon glyphicon-share-alt"></span>                 </div>
+            </div>
+        </div>
+            </div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment byuser comment-author-contactfredrikjohnsson-se odd alt thread-even depth-1" id="li-comment-1901861">
+    <div id="comment-1901861" class="clearfix">
+        <div class="col-a">
+            <img alt="" src="./Arduino Fan Speed Controlled by Temperature_files/f61b53ea47af2405bdaab1af1e3b4bf1" srcset="http://0.gravatar.com/avatar/f61b53ea47af2405bdaab1af1e3b4bf1?s=100&amp;d=identicon&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50">        </div>
+        <div class="col-b">
+            <div class="comment-author vcard">
+                                <cite class="fn">contactfredrikjohnsson-se</cite>            </div>
+            
+            <div class="comment-text">
+                <p>Great post! This inspired me a lot when doing my own version of a temperature controlled fan using an Arduino. Read about my project at <a href="http://dev.fredrikjohnsson.se/home-automation/temperature-controlled-fan/#more-121" rel="nofollow">http://dev.fredrikjohnsson.se/home-automation/temperature-controlled-fan/#more-121</a></p>
+<p>Thanks!</p>
+            </div>
+
+            <div class="comment-meta commentmetadata clearfix">
+                <div class="date-time col-sm-6 col-md-6 no-padd">
+                    Posted on <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#comment-1901861">December 17th 2016 | 12:02 am</a>
+                </div>
+                <div class="reply col-sm-6 col-md-6 no-padd">
+                    <span class="glyphicon glyphicon-share-alt"></span> <a rel="nofollow" class="comment-reply-login" href="http://www.electroschematics.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F">Log in to Reply</a>                </div>
+            </div>
+        </div>
+            </div>
+
+</li><!-- #comment-## -->
+
+<li class="comment byuser comment-author-benc-sreckogmail-com even thread-odd thread-alt depth-1" id="li-comment-1901859">
+    <div id="comment-1901859" class="clearfix">
+        <div class="col-a">
+            <img alt="" src="./Arduino Fan Speed Controlled by Temperature_files/35ace8948ed2b5fd8f09864c23affb78" srcset="http://0.gravatar.com/avatar/35ace8948ed2b5fd8f09864c23affb78?s=100&amp;d=identicon&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50">        </div>
+        <div class="col-b">
+            <div class="comment-author vcard">
+                                <cite class="fn">benc-sreckogmail-com</cite>            </div>
+            
+            <div class="comment-text">
+                <p>I have a problem with compiling that code. i am newbie in this so i dont know how to set the code that is behind backslash.line with map function…please help</p>
+            </div>
+
+            <div class="comment-meta commentmetadata clearfix">
+                <div class="date-time col-sm-6 col-md-6 no-padd">
+                    Posted on <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#comment-1901859">December 15th 2016 | 10:27 pm</a>
+                </div>
+                <div class="reply col-sm-6 col-md-6 no-padd">
+                    <span class="glyphicon glyphicon-share-alt"></span> <a rel="nofollow" class="comment-reply-login" href="http://www.electroschematics.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F">Log in to Reply</a>                </div>
+            </div>
+        </div>
+            </div>
+
+</li><!-- #comment-## -->
+
+<li class="comment byuser comment-author-imalan54yahoo-com odd alt thread-even depth-1" id="li-comment-1901277">
+    <div id="comment-1901277" class="clearfix">
+        <div class="col-a">
+            <img alt="" src="./Arduino Fan Speed Controlled by Temperature_files/7829a1422020bd0c34d262616d97845f" srcset="http://1.gravatar.com/avatar/7829a1422020bd0c34d262616d97845f?s=100&amp;d=identicon&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50">        </div>
+        <div class="col-b">
+            <div class="comment-author vcard">
+                                <cite class="fn">imalan54yahoo-com</cite>            </div>
+            
+            <div class="comment-text">
+                <p>I think this is a dead artical. I have questions posted back to july 2016 and have had no responce from the author. I received a reply to 1 of 3 questions from another person on this site. I still can’t get this circuit to work. Help! I’ve tried using an Arduino Unio R3, Duemilanove, and Pro Mini with no luck at all. My fan will not even spin unless I hook it up to 12v directly.</p>
+            </div>
+
+            <div class="comment-meta commentmetadata clearfix">
+                <div class="date-time col-sm-6 col-md-6 no-padd">
+                    Posted on <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#comment-1901277">September 24th 2016 | 8:49 pm</a>
+                </div>
+                <div class="reply col-sm-6 col-md-6 no-padd">
+                    <span class="glyphicon glyphicon-share-alt"></span> <a rel="nofollow" class="comment-reply-login" href="http://www.electroschematics.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F">Log in to Reply</a>                </div>
+            </div>
+        </div>
+            </div>
+
+<ul class="children">
+
+<li class="comment byuser comment-author-throwawayforthisguy even depth-2" id="li-comment-1901753">
+    <div id="comment-1901753" class="clearfix">
+        <div class="col-a">
+            <img alt="" src="./Arduino Fan Speed Controlled by Temperature_files/72ac0ef42523c3b56bdd072b8609c226" srcset="http://1.gravatar.com/avatar/72ac0ef42523c3b56bdd072b8609c226?s=100&amp;d=identicon&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50">        </div>
+        <div class="col-b">
+            <div class="comment-author vcard">
+                                <cite class="fn">throwawayforthisguy</cite>            </div>
+            
+            <div class="comment-text">
+                <p>I created an account just to leave this comment. His example code is broken. There is no part in the code to output to the fan. I suggest trying this website for help: <a href="http://www.instructables.com/id/Using-a-temperature-sensor-to-control-the-speed-of/" rel="nofollow">http://www.instructables.com/id/Using-a-temperature-sensor-to-control-the-speed-of/</a></p>
+<p>I hope this helps.</p>
+            </div>
+
+            <div class="comment-meta commentmetadata clearfix">
+                <div class="date-time col-sm-6 col-md-6 no-padd">
+                    Posted on <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#comment-1901753">November 30th 2016 | 4:42 am</a>
+                </div>
+                <div class="reply col-sm-6 col-md-6 no-padd">
+                    <span class="glyphicon glyphicon-share-alt"></span>                 </div>
+            </div>
+        </div>
+            </div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+<li class="comment byuser comment-author-steve_robbins odd alt thread-odd thread-alt depth-1" id="li-comment-1901273">
+    <div id="comment-1901273" class="clearfix">
+        <div class="col-a">
+            <img alt="" src="./Arduino Fan Speed Controlled by Temperature_files/6cc41b1fb4367ae708134b78b4bbbd7d" srcset="http://0.gravatar.com/avatar/6cc41b1fb4367ae708134b78b4bbbd7d?s=100&amp;d=identicon&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50">        </div>
+        <div class="col-b">
+            <div class="comment-author vcard">
+                                <cite class="fn">Steve_Robbins</cite>            </div>
+            
+            <div class="comment-text">
+                <p>Just out of curiosity, what Arduino board are you running here?<br>
+Stephen.</p>
+            </div>
+
+            <div class="comment-meta commentmetadata clearfix">
+                <div class="date-time col-sm-6 col-md-6 no-padd">
+                    Posted on <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#comment-1901273">September 23rd 2016 | 11:38 am</a>
+                </div>
+                <div class="reply col-sm-6 col-md-6 no-padd">
+                    <span class="glyphicon glyphicon-share-alt"></span> <a rel="nofollow" class="comment-reply-login" href="http://www.electroschematics.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F">Log in to Reply</a>                </div>
+            </div>
+        </div>
+            </div>
+
+</li><!-- #comment-## -->
+
+<li class="comment byuser comment-author-ae_g even thread-even depth-1" id="li-comment-1901263">
+    <div id="comment-1901263" class="clearfix">
+        <div class="col-a">
+            <img alt="" src="./Arduino Fan Speed Controlled by Temperature_files/8edc4df4a2b0ac843ff34a62ae7b3a9a" srcset="http://2.gravatar.com/avatar/8edc4df4a2b0ac843ff34a62ae7b3a9a?s=100&amp;d=identicon&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50">        </div>
+        <div class="col-b">
+            <div class="comment-author vcard">
+                                <cite class="fn">ae_g</cite>            </div>
+            
+            <div class="comment-text">
+                <p>The BD139 only have a hFE of about 40, are you still able to saturate it? Guess it can run a bit hot if not. I thought of using it driving a couple of leds but i think ill add a smaller transistor to get it to work like a darlington.</p>
+            </div>
+
+            <div class="comment-meta commentmetadata clearfix">
+                <div class="date-time col-sm-6 col-md-6 no-padd">
+                    Posted on <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#comment-1901263">September 21st 2016 | 7:22 pm</a>
+                </div>
+                <div class="reply col-sm-6 col-md-6 no-padd">
+                    <span class="glyphicon glyphicon-share-alt"></span> <a rel="nofollow" class="comment-reply-login" href="http://www.electroschematics.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F">Log in to Reply</a>                </div>
+            </div>
+        </div>
+            </div>
+
+</li><!-- #comment-## -->
+
+<li class="comment byuser comment-author-imalan54yahoo-com odd alt thread-odd thread-alt depth-1" id="li-comment-1901199">
+    <div id="comment-1901199" class="clearfix">
+        <div class="col-a">
+            <img alt="" src="./Arduino Fan Speed Controlled by Temperature_files/7829a1422020bd0c34d262616d97845f" srcset="http://1.gravatar.com/avatar/7829a1422020bd0c34d262616d97845f?s=100&amp;d=identicon&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50">        </div>
+        <div class="col-b">
+            <div class="comment-author vcard">
+                                <cite class="fn">imalan54yahoo-com</cite>            </div>
+            
+            <div class="comment-text">
+                <p>What type of capacitor is used in your circuit? It appears to be non polarized. This looks to be a great circuit to cool my power supply. Thanks for sharing.<br>
+Thanks<br>
+Alan</p>
+            </div>
+
+            <div class="comment-meta commentmetadata clearfix">
+                <div class="date-time col-sm-6 col-md-6 no-padd">
+                    Posted on <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#comment-1901199">August 12th 2016 | 9:19 pm</a>
+                </div>
+                <div class="reply col-sm-6 col-md-6 no-padd">
+                    <span class="glyphicon glyphicon-share-alt"></span> <a rel="nofollow" class="comment-reply-login" href="http://www.electroschematics.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F">Log in to Reply</a>                </div>
+            </div>
+        </div>
+            </div>
+
+</li><!-- #comment-## -->
+
+<li class="comment byuser comment-author-gaba2kalanggmail-com even thread-even depth-1" id="li-comment-1901198">
+    <div id="comment-1901198" class="clearfix">
+        <div class="col-a">
+            <img alt="" src="./Arduino Fan Speed Controlled by Temperature_files/74a4d93e8905f8d827216ff789b33b61" srcset="http://1.gravatar.com/avatar/74a4d93e8905f8d827216ff789b33b61?s=100&amp;d=identicon&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50">        </div>
+        <div class="col-b">
+            <div class="comment-author vcard">
+                                <cite class="fn">gaba2kalanggmail-com</cite>            </div>
+            
+            <div class="comment-text">
+                <p>What is the purpose of the transistor here?</p>
+            </div>
+
+            <div class="comment-meta commentmetadata clearfix">
+                <div class="date-time col-sm-6 col-md-6 no-padd">
+                    Posted on <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#comment-1901198">August 12th 2016 | 7:36 pm</a>
+                </div>
+                <div class="reply col-sm-6 col-md-6 no-padd">
+                    <span class="glyphicon glyphicon-share-alt"></span> <a rel="nofollow" class="comment-reply-login" href="http://www.electroschematics.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F">Log in to Reply</a>                </div>
+            </div>
+        </div>
+            </div>
+
+</li><!-- #comment-## -->
+
+<li class="comment byuser comment-author-fsmitkpnmail-nl odd alt thread-odd thread-alt depth-1" id="li-comment-1901181">
+    <div id="comment-1901181" class="clearfix">
+        <div class="col-a">
+            <img alt="" src="./Arduino Fan Speed Controlled by Temperature_files/f3aa983a8d028d6d8f9ebe8255ad95c3" srcset="http://0.gravatar.com/avatar/f3aa983a8d028d6d8f9ebe8255ad95c3?s=100&amp;d=identicon&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50">        </div>
+        <div class="col-b">
+            <div class="comment-author vcard">
+                                <cite class="fn">fsmitkpnmail-nl</cite>            </div>
+            
+            <div class="comment-text">
+                <p>Hello, this works great no questions there, but i have connected a 12v fan to this and it not runs on full speed, howto make this work for 12v fan instead of 9v ?<br>
+Thank you, great project !!</p>
+            </div>
+
+            <div class="comment-meta commentmetadata clearfix">
+                <div class="date-time col-sm-6 col-md-6 no-padd">
+                    Posted on <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#comment-1901181">August 05th 2016 | 11:32 am</a>
+                </div>
+                <div class="reply col-sm-6 col-md-6 no-padd">
+                    <span class="glyphicon glyphicon-share-alt"></span> <a rel="nofollow" class="comment-reply-login" href="http://www.electroschematics.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.electroschematics.com%2F9540%2Farduino-fan-speed-controlled-temperature%2F">Log in to Reply</a>                </div>
+            </div>
+        </div>
+            </div>
+
+</li><!-- #comment-## -->
+				</ul>
+
+									<nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
+						<div id="view_more"><a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/comment-page-2/#comments">View More</a></div>
+						<div class="comment-loading"><img src="./Arduino Fan Speed Controlled by Temperature_files/loading.gif" alt="Loading"></div>
+					</nav>
+				
+									</div>
+	</div>
+</div>
+											</div>
+
+										<div class="sidebar col-md-4">
+						<div id="trigger-point"></div>
+						<div id="wppb-login-widget-3" class="widgets login clearfix"><h2>Login</h2><div id="wppb-login-wrap" class="wppb-user-forms">
+		<form name="loginform" id="loginform" action="http://www.electroschematics.com/wp-login.php" method="post">
+			
+			<p class="login-username">
+				<label for="user_login">Email</label>
+				<input type="text" name="log" id="user_login" class="input" value="" size="20">
+			</p>
+			<p class="login-password">
+				<label for="user_pass">Password</label>
+				<input type="password" name="pwd" id="user_pass" class="input" value="" size="20">
+			</p>
+			
+			<p class="login-remember"><label><input name="rememberme" type="checkbox" id="rememberme" value="forever"> Remember Me</label></p>
+			<p class="login-submit">
+				<input type="submit" name="wp-submit" id="wppb-submit" class="button-primary" value="Log In">
+				<input type="hidden" name="redirect_to" value="http://www.electroschematics.com/">
+			</p>
+			<input type="hidden" name="wppb_login" value="true"><input type="hidden" name="wppb_form_location" value="widget"><input type="hidden" name="wppb_request_url" value="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/"><input type="hidden" name="wppb_lostpassword_url" value="http://www.electroschematics.com/lostpassword"><input type="hidden" name="wppb_redirect_priority" value="top"><input type="hidden" name="wppb_referer_url" value="https://www.google.co.in/">
+		</form><p class="login-register-lost-password"><a href="http://www.electroschematics.com/register">Register</a> | <a href="http://www.electroschematics.com/lostpassword">Lost your password?</a></p></div></div>        <div class="latest-comments wrapper clearfix">
+            <div class="widgets">
+                <div class="l-comments box">
+                    <h2>Latest Article Comments</h2>                    <div class="clearfix">
+                                                                            
+                                                                                                                            <div class="comment-content show-comment">
+                                                                    <a href="http://www.electroschematics.com/6467/ic-ca3130-datasheet/#li-comment-1902475">IC CA3130...</a>
+                                    <div>"i m also making project on cell phone detector please give me circuit diagram and your solution and"</div>
+                                </div>
+                                                                                
+                                                                                                                            <div class="comment-content show-comment">
+                                                                    <a href="http://www.electroschematics.com/9964/arduino-water-level-indicator-controller/#li-comment-1902474">Arduino Water Level Indicator +...</a>
+                                    <div>"hello! anyone knows the LCD connection for this project? I mean the wires between the LCD and the"</div>
+                                </div>
+                                                                                
+                                                                                                                            <div class="comment-content show-comment">
+                                                                    <a href="http://www.electroschematics.com/10182/arduino-solar-tracker-servo/#li-comment-1902473">Arduino Solar Tracker with...</a>
+                                    <div>"I tried the above, its not working well. My motor rotates full 180 degree &amp; doesn't stops at"</div>
+                                </div>
+                                                                                
+                                                                                                                            <div class="comment-content show-comment">
+                                                                    <a href="http://www.electroschematics.com/1035/mobile-bug-detector-sniffer/#li-comment-1902472">Cell Phone Detector aka Mobile...</a>
+                                    <div>"i am very  Upset.sir.i dont known the watts values of 1k,100k,12k and 15k resisitence .kindly  tale"</div>
+                                </div>
+                                                                                
+                                                                                                                            <div class="comment-content show-comment">
+                                                                    <a href="http://www.electroschematics.com/12446/arduino-with-keypad/#li-comment-1902470">Arduino with Keypad...</a>
+                                    <div>"Will try. Just upload the photo of your"</div>
+                                </div>
+                                                                                
+                                                                                                                            <div class="comment-content hide-comment">
+                                                                    <a href="http://www.electroschematics.com/12446/arduino-with-keypad/#li-comment-1902469">Arduino with Keypad...</a>
+                                    <div>"hey... i have 1 by 2 mtrix key pad having 2 buttons and 4 pins, without data sheet could u help me"</div>
+                                </div>
+                                                                                
+                                                                                                                            <div class="comment-content hide-comment">
+                                                                    <a href="http://www.electroschematics.com/9351/arduino-digital-voltmeter/#li-comment-1902468">Arduino Digital Voltmeter 0V to...</a>
+                                    <div>"Sorry if the answer to this question is completely obvious, I am new to arduino and coding in"</div>
+                                </div>
+                                                                                
+                                                                                                                            <div class="comment-content hide-comment">
+                                                                    <a href="http://www.electroschematics.com/13031/mobile-phone-battery-emulator/#li-comment-1902467">Mobile Phone Battery...</a>
+                                    <div>"sir  I want to fix capacitor in power"</div>
+                                </div>
+                                                                                
+                                                                                
+                                                                                                                            <div class="comment-content hide-comment">
+                                                                    <a href="http://www.electroschematics.com/6653/simple-water-detector-circuit/#li-comment-1902464">Simple Water Detector...</a>
+                                    <div>"I simulated with proteus and works perfectly fine, then I assembled de circuit in a proto and"</div>
+                                </div>
+                                                                        </div>
+                        <div class="vm-com">
+                            <a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/" class="view-more-comments">View More</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="tabber_widget-2" class="widgets tabber_widget clearfix">	<div id="tabber_widget-2-content" class="tabber-widget-0 tabber-widget-basic-light">
+		<ul class="tabber-widget-tabs">
+											<li><a class="selected" href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#tab-tabber_widget-2-1">New Projects</a></li>
+											<li><a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#tab-tabber_widget-2-2">Recent Q&amp;A</a></li>
+					</ul>
+								<div id="tab-tabber_widget-2-1" class="tabber-widget-content" style="display: block;">
+						<div class="tabber-widget widget_recent_entries" id="recent-posts-37">		<h5 class="tabber-widget-title">Recent Posts</h5>		<ul>
+					<li>
+				<a href="http://www.electroschematics.com/13035/inexpensive-diy-gauss-meter-project/">Inexpensive DIY Gauss Meter Project</a>
+						</li>
+					<li>
+				<a href="http://www.electroschematics.com/13031/mobile-phone-battery-emulator/">Mobile Phone Battery Emulator</a>
+						</li>
+					<li>
+				<a href="http://www.electroschematics.com/13021/sine-wave-generator-circuit/">Sine Wave Generator Circuit</a>
+						</li>
+					<li>
+				<a href="http://www.electroschematics.com/13015/portable-power-inverter/">Portable Power Inverter Circuit</a>
+						</li>
+					<li>
+				<a href="http://www.electroschematics.com/13002/13002/">Projector Hushbox with the STM32F4 – Firmware</a>
+						</li>
+				</ul>
+		</div>					</div>
+								<div id="tab-tabber_widget-2-2" class="tabber-widget-content" style="display: none;">
+				<div class="tabber-widget widget_q2a_recent_questions" id="q2a_recent_questions-5"><h5 class="tabber-widget-title">Recent Questions</h5><ul class="qa-question-widget"><li><a href="http://www.electroschematics.com/qa/10733/">How do I make a Solar Panel from Garden Light Solar Cells</a><span> </span></li><li><a href="http://www.electroschematics.com/qa/10723/">Why two 1N5401  diodes in the "Auto 12V Bulb Failure Warning" circuit?</a><span> </span></li><li><a href="http://www.electroschematics.com/qa/10719/">how to create a vibration motor that can cause the ground to vibrate?</a><span> </span></li><li><a href="http://www.electroschematics.com/qa/10718/">LM324 Pin connections</a><span> </span></li><li><a href="http://www.electroschematics.com/qa/10717/">LM324 Pre-Amp For Mic (to PC) Not Working what to do ?</a><span> </span></li></ul></div>			</div>
+			</div>
+	
+	<script type="text/javascript">
+		jQuery("#tabber_widget-2-content ul").idTabs();
+	</script>
+</div><div id="text-105" class="widgets widget_text clearfix">			<div class="textwidget"><!-- /74317539/ElectroSchematics -->
+<div class="rec-ads">
+<div id="div-gpt-ad-medium-rectangle" style="width:300px; height:250px;" data-google-query-id="CPqD68b-69ECFcWkaAodtLoNww">
+<script type="text/javascript">
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-medium-rectangle'); });
+</script><div id="div-gpt-ad-medium-rectangle_ad_container">
+<ins style="width: 300px; height: 250px; display: inline-table; position: relative; border: 0px; vertical-align: bottom;"><ins style="width: 300px; height: 250px; display: block; position: relative; border: 0px;"><iframe id="google_ads_iframe_/74317539/ElectroSchematics_1" title="3rd party ad content" name="google_ads_iframe_/74317539/ElectroSchematics_1" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; position: absolute; top: 0px; left: 0px;" src="./Arduino Fan Speed Controlled by Temperature_files/saved_resource(9).html"></iframe></ins></ins></div>
+<script>googletag.impl.pubads.createDomIframe("div-gpt-ad-medium-rectangle_ad_container" ,"/74317539/ElectroSchematics_1",false,false);</script>
+</div>
+</div></div>
+		</div><div id="text-111" class="widgets widget_text clearfix">			<div class="textwidget"><div class="featured-design">
+<div id="div-gpt-ad-ti-featured-design" data-google-query-id="CP2D68b-69ECFcWkaAodtLoNww">
+<script type="text/javascript">
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-ti-featured-design'); });
+</script><div id="google_ads_iframe_/74317539/ElectroSchematics_4__container__" style="display: inline-block; width: 300px; height: 450px;"><iframe frameborder="0" src="./Arduino Fan Speed Controlled by Temperature_files/container.html" id="google_ads_iframe_/74317539/ElectroSchematics_4" title="3rd party ad content" name="" scrolling="no" marginwidth="0" marginheight="0" width="300" height="450" data-is-safeframe="true" style="border: 0px; vertical-align: bottom;"></iframe></div>
+</div>
+</div></div>
+		</div><div id="text-106" class="widgets widget_text clearfix">			<div class="textwidget"><div class="filmstrip">
+<div id="div-gpt-ad-filmstrip" data-google-query-id="CPuD68b-69ECFcWkaAodtLoNww">
+<script type="text/javascript">
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-filmstrip'); });
+</script><div id="div-gpt-ad-filmstrip_ad_container">
+<ins style="width: 300px; height: 600px; display: inline-table; position: relative; border: 0px; vertical-align: bottom;"><ins style="width: 300px; height: 600px; display: block; position: relative; border: 0px;"><iframe id="google_ads_iframe_/74317539/ElectroSchematics_2" title="3rd party ad content" name="google_ads_iframe_/74317539/ElectroSchematics_2" width="300" height="600" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; position: absolute; top: 0px; left: 0px;" src="./Arduino Fan Speed Controlled by Temperature_files/saved_resource(10).html"></iframe></ins></ins></div>
+<script>googletag.impl.pubads.createDomIframe("div-gpt-ad-filmstrip_ad_container" ,"/74317539/ElectroSchematics_2",false,false);</script>
+</div>
+</div></div>
+		</div><div id="pardot-forms-2" class="widgets pardot-forms clearfix">
+<div class="pardot-forms-widget">
+	
+	<div class="pardot-forms-body">
+		<iframe class="pardotform" src="./Arduino Fan Speed Controlled by Temperature_files/3lhkwy.html" width="100%" height="500" type="text/html" frameborder="0" allowtransparency="true" style="border: 0"></iframe>
+	</div>
+</div>
+</div><div id="text-110" class="widgets widget_text clearfix">			<div class="textwidget"><div class="subscribe-now">
+<a href="http://www.electroschematics.com/subscribe" rel="nofollow" class="image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/subscribe-btn.jpg" alt="subscribe now"></a>
+</div></div>
+		</div><div id="mostpopulartags-2" class="widgets widget_most_popular_tags clearfix"><h2>Popular Tags</h2><ul class="wp-tag-cloud">
+	<li><a href="http://www.electroschematics.com/tag/ic-datasheet-circuits/" class="tag-link-50 tag-link-position-1" title="106 topics" style="font-size: 14px;">IC datasheet</a></li>
+	<li><a href="http://www.electroschematics.com/tag/led-circuits/" class="tag-link-194 tag-link-position-2" title="68 topics" style="font-size: 14px;">LED</a></li>
+	<li><a href="http://www.electroschematics.com/tag/audio-amplifier-circuits/" class="tag-link-86 tag-link-position-3" title="47 topics" style="font-size: 14px;">audio amplifier</a></li>
+	<li><a href="http://www.electroschematics.com/tag/battery-charger-circuits/" class="tag-link-94 tag-link-position-4" title="38 topics" style="font-size: 14px;">battery chargers</a></li>
+	<li><a href="http://www.electroschematics.com/tag/741-circuits/" class="tag-link-337 tag-link-position-5" title="32 topics" style="font-size: 14px;">741</a></li>
+	<li><a href="http://www.electroschematics.com/tag/fm-transmitter-circuits/" class="tag-link-185 tag-link-position-6" title="29 topics" style="font-size: 14px;">fm transmitters</a></li>
+	<li><a href="http://www.electroschematics.com/tag/avr-tutorial/" class="tag-link-1290 tag-link-position-7" title="26 topics" style="font-size: 14px;">AVR tutorial</a></li>
+	<li><a href="http://www.electroschematics.com/tag/solar-charger-circuits/" class="tag-link-736 tag-link-position-8" title="26 topics" style="font-size: 14px;">solar chargers</a></li>
+	<li><a href="http://www.electroschematics.com/tag/led-flasher-circuits/" class="tag-link-179 tag-link-position-9" title="24 topics" style="font-size: 14px;">led flashers</a></li>
+	<li><a href="http://www.electroschematics.com/tag/ldr-circuits/" class="tag-link-752 tag-link-position-10" title="23 topics" style="font-size: 14px;">LDR</a></li>
+</ul>
+</div><div id="text-103" class="widgets widget_text clearfix">			<div class="textwidget"><div class="join-fb">
+<a href="https://www.facebook.com/groups/electroschematics/" rel="nofollow" target="_blank" class="image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/fb-side-bnn.png" alt="electroschematics group on facebook"></a>
+</div>
+</div>
+		</div>					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<!--WP Code Highlight_start-->
+	<script type="text/javascript">
+		window.onload = function(){prettyPrint();};
+	</script>
+	<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/wp-code-highlight.js.download"></script>
+	<!--WP Code Highlight_end-->
+<!-- wallpaper ad -->
+<div id="div-gpt-ad-wallpaper" data-google-query-id="">
+	<script type="text/javascript">
+		googletag.cmd.push(function() { googletag.display('div-gpt-ad-wallpaper'); });
+	</script>
+</div>
+</div>
+	<div class="ads-footer-container">
+		<div class="ads-full">
+			<div id="text-108" class="widgets widget_text">			<div class="textwidget"><div id="div-gpt-ad-leader-smartphonebanner" data-google-query-id="CPyD68b-69ECFcWkaAodtLoNww">
+<script type="text/javascript">
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-leader-smartphonebanner'); });
+</script><div id="div-gpt-ad-leader-smartphonebanner_ad_container">
+<ins style="width: 728px; height: 90px; display: inline-table; position: relative; border: 0px; vertical-align: bottom;"><ins style="width: 728px; height: 90px; display: block; position: relative; border: 0px;"><iframe id="google_ads_iframe_/74317539/ElectroSchematics_3" title="3rd party ad content" name="google_ads_iframe_/74317539/ElectroSchematics_3" width="728" height="90" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; position: absolute; top: 0px; left: 0px;" src="./Arduino Fan Speed Controlled by Temperature_files/saved_resource(11).html"></iframe></ins></ins></div>
+<script>googletag.impl.pubads.createDomIframe("div-gpt-ad-leader-smartphonebanner_ad_container" ,"/74317539/ElectroSchematics_3",false,false);</script>
+</div></div>
+		</div>		</div>
+	</div>
+	<div class="footer-wrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-2">
+					<h2>The Basics</h2>
+					<ul class="basics">
+						<li><a>About Us</a></li>
+						<li><a href="http://www.electroschematics.com/contact-us">Contact Us</a></li>
+						<li><a href="http://www.electroschematics.com/participate">Participate</a></li>
+						<li><a href="http://www.aspencore.com/privacy-policy" target="_blank">Privacy Policy</a></li>
+						<li><a href="http://www.aspencore.com/terms-of-use" target="_blank">Terms of Use</a></li>
+						<li><a href="https://www.surveymonkey.com/r/2SMMN52" target="_blank">Feedback</a></li>
+					</ul>
+				</div>
+				<div class="msc-padd col-xs-12 col-sm-6 col-md-2">
+					<h2>For Advertisers</h2>
+					<ul class="advertisers">
+						<li><a href="http://go.aspencore.com/contactus" target="_blank">Contact Sales</a></li>
+						<li><a href="http://go.aspencore.com/mediakit" target="_blank">Media Guide Request</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-5">
+					<h2>Aspencore Network</h2>
+					<ul class="network">
+						<li><a>ElectroSchematics</a></li>
+						<li><a href="http://www.electronics-tutorials.ws/" target="_blank">Electronics Tutorials</a></li>
+						<li><a href="http://www.electronicproducts.com/" target="_blank">Electronic Products</a></li>
+						<li><a href="http://www.21ic.com/" target="_blank">21IC</a></li>
+						<li><a href="http://embedded-control-europe.com/" target="_blank">Embedded Control Europe</a></li>
+						<li><a href="http://www.elektroda.pl/" target="_blank">Elektroda</a></li>
+						<li><a href="http://www.eeweb.com/" target="_blank">EEWeb</a></li>
+						<li><a href="http://www.mikrocontroller.net/en" target="_blank">Mikrocontroller</a></li>
+						<li><a href="http://www.engineersgarage.com/" target="_blank">Engineers Garage</a></li>
+						<li><a href="http://www.eem.com/" target="_blank">EEM</a></li>
+						<li><a href="http://www.embedded-know-how.com/" target="_blank">Embedded Know How</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-3">
+					<h2>Connect with Us</h2>
+					<ul class="social-foot">
+						<li><a href="https://www.facebook.com/groups/electroschematics/" rel="nofollow" target="_blank"><span class="symbol"></span><span class="desc">Facebook</span></a></li>
+						<li><a href="https://www.youtube.com/user/ElectroSchematics"><span class="symbol"></span><span class="desc">YouTube</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="bttm-most">
+			<div class="container">
+				<div class="row">
+					<div class="col-a col-sm-12 col-md-12">
+						All contents are Copyright © 2016 by AspenCore, Inc. All Rights Reserved.
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+<!-- Mouser Panel -->
+<div class="flyover-btm-overlay">
+	<div class="mouser-menu">
+		<div class="visible-sec">
+			<img src="./Arduino Fan Speed Controlled by Temperature_files/ic-logo.png" alt="" height="34">
+			<span>Looking for the latest from TI?</span>
+		</div>
+	<div class="browse-list-wrap">
+		<ul class="products-list">
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/amplifiersandlinears/amplifiersandlinears.page?HQS=hpa-null-null-elschemflyaway-bs-lp-amplifiers-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Amplifiers</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/non-isolated-dc-dc-switching-regulator-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-nonisolatedDCDC-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Non-Isolated DC/DC</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/audio/overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-audio-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Audio</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/powermanagement/power_portal.page?HQS=hpa-null-null-elschemflyaway-bs-lp-pwrmgmt-wwe&amp;DCM=yes" target="_blank" class="image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Power Management</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/battery-management-products-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-battery-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Battery Management</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/power-management-multi-channel-ic-pmic-solutions-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-pmic-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Power Management IC (PMIC)</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/clockandtiming/clock_and_timing.page?HQS=hpa-null-null-elschemflyaway-bs-lp-clocks-wwe&amp;DCM=yes" class="mouser-product-click image-cont" target="_blank"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Clock and Timing</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/power-modules-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-powermodules-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Power Modules</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/dataconverters/data_converter.page?HQS=hpa-null-null-elschemflyaway-bs-lp-dataconverters-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Data Converters</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/sensors/overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-sensors-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Sensors</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/interface/interface.page?HQS=hpa-null-null-elschemflyaway-bs-lp-interface-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Interface</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/voltage-reference-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-voltageref-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Voltage References</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/linear-regulators-ldo-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-linearregulator-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Linear Regulator (LDO)</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/webench/overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-WEBENCH-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Webench</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/logic/home_overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-logic-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Logic</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/general/docs/refdesignsearchresults.tsp?HQS=hpa-null-null-elschemflyaway-bs-lp-TIDesigns-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">TI Designs</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/power-management/mosfet-and-igbt-gate-drivers-overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-MOSFET-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">MOSFET and IGBT Gate Drivers</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?https://store.ti.com?HQS=hpa-null-null-elschemflyaway-bs-store-store-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">TI Store</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com/lsds/ti/analog/motordrivers/overview.page?HQS=hpa-null-null-elschemflyaway-bs-lp-motordrivers-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">Motor Drivers</a></li>
+			<li><a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://my.ti.com?HQS=hpa-null-null-elschemflyaway-bs-myti-myti-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont"><img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow.png">MyTI Registration</a></li>
+
+		</ul>
+	</div>
+		<div class="visit-ti-footer">
+			<a href="https://ad.doubleclick.net/ddm/clk/309962084;137629245;p?http://www.ti.com?HQS=hpa-null-null-elschemflyaway-bs-lp-homepage-wwe&amp;DCM=yes" target="_blank" class="mouser-product-click image-cont">visit ti.com <img src="./Arduino Fan Speed Controlled by Temperature_files/right-arrow-white.png"></a>
+		</div>
+	</div>
+</div>
+<!-- End Mouser Panel -->
+<style>
+	iframe[src*="siliconexpert.com"] {
+		position: absolute;
+		z-index : 2;
+		bottom: 0;
+	}
+</style>
+
+<script type="text/javascript">
+	(function() {
+		var cid="electroschematics", arp = document.createElement('script');
+		arp.type = 'text/javascript'; arp.async = true;
+		arp.src = "//reach-cdn.siliconexpert.com/tag/"+cid+".js";
+		var s0 = document.getElementsByTagName('script')[0];
+		s0.parentNode.insertBefore(arp, s0);
+	})();
+</script>
+<div id="cookie-law-info-bar" style="display: block; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-family: inherit; bottom: 0px; border-top: 4px solid rgb(68, 68, 68); position: fixed;"><span>This website uses cookies to improve your experience. We'll assume you're ok with this, but you can opt-out if you wish.<a href="http://www.electroschematics.com/9540/arduino-fan-speed-controlled-temperature/#" id="cookie_action_close_header" class="medium cli-plugin-button cli-plugin-main-button" style="color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);">Accept</a> <a href="http://www.electroschematics.com/policy/" id="CONSTANT_OPEN_URL" target="_blank" class="cli-plugin-main-link" style="color: rgb(68, 68, 68);">Read More</a></span></div>		
+		<script type="text/javascript">
+			//<![CDATA[
+			jQuery(document).ready(function() {
+				cli_show_cookiebar({
+					settings: '{"animate_speed_hide":"500","animate_speed_show":"500","background":"#fff","border":"#444","border_on":true,"button_1_button_colour":"#000","button_1_button_hover":"#000000","button_1_link_colour":"#fff","button_1_as_button":true,"button_2_button_colour":"#333","button_2_button_hover":"#292929","button_2_link_colour":"#444","button_2_as_button":false,"font_family":"inherit","header_fix":false,"notify_animate_hide":true,"notify_animate_show":false,"notify_div_id":"#cookie-law-info-bar","notify_position_horizontal":"right","notify_position_vertical":"bottom","scroll_close":false,"scroll_close_reload":false,"showagain_tab":false,"showagain_background":"#fff","showagain_border":"#000","showagain_div_id":"#cookie-law-info-again","showagain_x_position":"100px","text":"#000","show_once_yn":false,"show_once":"10000"}'
+				});
+			});
+			//]]>
+		</script>
+		
+		<script>cp_popup_url="http://www.electroschematics.com/wp-content/plugins/comment-plus/camera.php";
+function cp_popup() {
+var left = (screen.width - 500)/2;
+var top = (screen.height - 400)/2;
+var params = "width=500, height=400, top=" + top + ", left=" + left;
+    params += ", directories=no,location=no,menubar=no,resizable=no,scrollbars=no,status=no,toolbar=no";
+    var awin = window.open(cp_popup_url, "cpcamera", params);
+    if (window.focus) awin.focus();
+}
+for (i=0; i<document.forms.length; i++) {
+    if (!document.forms[i].comment_post_ID) continue;
+    document.forms[i].encoding = "multipart/form-data";
+}</script><script type="text/javascript">
+<!--
+piCId = '63352';
+piAId = '115242';
+
+
+(function() {
+	function async_load(){
+		var s = document.createElement('script'); s.type = 'text/javascript';
+		s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+		var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+	}
+	if(window.attachEvent) { window.attachEvent('onload', async_load); }
+	else { window.addEventListener('load', async_load, false); }
+})();
+-->
+</script><script type="text/javascript">
+
+(function($){
+     $('a > img').closest('a').addClass('image-cont');
+})(jQuery);
+
+</script>
+<link rel="stylesheet" id="yarppRelatedCss-css" href="./Arduino Fan Speed Controlled by Temperature_files/related.css" type="text/css" media="all">
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/jquery.form.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/www.electroschematics.com\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","recaptchaEmpty":"Please verify that you are not a robot.","sending":"Sending ...","cached":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/scripts.js.download"></script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/script-q2a.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var JQLBSettings = {"fitToScreen":"1","resizeSpeed":"400","displayDownloadLink":"1","navbarOnTop":"0","loopImages":"","resizeCenter":"","marginSize":"0","linkTarget":"","help":"","prevLinkTitle":"previous image","nextLinkTitle":"next image","prevLinkText":"\u00ab Previous","nextLinkText":"Next \u00bb","closeTitle":"close image gallery","image":"Image ","of":" of ","download":"Download","jqlb_overlay_opacity":"80","jqlb_overlay_color":"#000000","jqlb_overlay_close":"1","jqlb_border_width":"10","jqlb_border_color":"#ffffff","jqlb_border_radius":"0","jqlb_image_info_background_transparency":"100","jqlb_image_info_bg_color":"#ffffff","jqlb_image_info_text_color":"#000000","jqlb_image_info_text_fontsize":"10","jqlb_show_text_for_image":"1","jqlb_next_image_title":"next image","jqlb_previous_image_title":"previous image","jqlb_next_button_image":"http:\/\/www.electroschematics.com\/wp-content\/plugins\/wp-lightbox-2\/styles\/images\/next.gif","jqlb_previous_button_image":"http:\/\/www.electroschematics.com\/wp-content\/plugins\/wp-lightbox-2\/styles\/images\/prev.gif","jqlb_maximum_width":"","jqlb_maximum_height":"","jqlb_show_close_button":"1","jqlb_close_image_title":"close image gallery","jqlb_close_image_max_heght":"22","jqlb_image_for_close_lightbox":"http:\/\/www.electroschematics.com\/wp-content\/plugins\/wp-lightbox-2\/styles\/images\/closelabel.gif","jqlb_keyboard_navigation":"1","jqlb_popup_size_fix":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/wp-lightbox-2.min.js.download"></script>
+<script type="text/javascript" src="./Arduino Fan Speed Controlled by Temperature_files/wp-embed.min.js.download"></script>
+
+
+
+<!-- Dynamic page generated in 0.981 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2017-01-31 10:26:11 -->
+
+<!-- Compression = gzip --><iframe src="./Arduino Fan Speed Controlled by Temperature_files/tag.html" style="width: 1px; visibility: hidden;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./Arduino Fan Speed Controlled by Temperature_files/saved_resource(12).html"></iframe><iframe id="google_osd_static_frame_4933035997720" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./Arduino Fan Speed Controlled by Temperature_files/saved_resource(13).html"></iframe><div id="overlay" style="width: 1423px; height: 8077px; opacity: 0.8; display: none;"></div><div id="lightbox" style="display: none; top: 731px; left: 0px;"><div id="outerImageContainer" style="width: 955px; height: 721px;"><div id="imageContainer"><iframe id="lightboxIframe" src="./Arduino Fan Speed Controlled by Temperature_files/saved_resource(14).html"></iframe><img id="lightboxImage" src="./Arduino Fan Speed Controlled by Temperature_files/test-setup.jpg" style="display: inline; width: 935px; height: 701px;"><div id="hoverNav" style="display: block;"><a href="javascript://" title="previous image" id="prevLink" style="display: block; height: 701px;"></a><a href="javascript://" id="nextLink" title="next image" style="display: block; height: 701px;"></a></div><div id="loading" style="display: none;"><a href="javascript://" id="loadingLink"><div id="jqlb_loading"></div></a></div></div></div><div id="imageDataContainer" class="clearfix" style="width: 955px;"><div id="imageData"><div id="imageDetails"><span id="caption" style="display: inline;"></span><span id="numberDisplay">Image 2 of 2<a href="./Arduino Fan Speed Controlled by Temperature_files/test-setup.jpg" id="downloadLink" download="test-setup.jpg" target="_self">Download</a></span></div><div id="bottomNav"><a href="javascript://" id="bottomNavClose" title="close image gallery"><img src="./Arduino Fan Speed Controlled by Temperature_files/closelabel.gif" id="jqlb_closelabel"></a></div></div></div></div></body></html>

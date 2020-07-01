@@ -1,0 +1,416 @@
+/*
+* Theme Name: Electroschematics v2.0
+* Version: 1.0
+* Author: Aspencore Web Team 2016
+*/
+@import url(css/bootstrap.min.css);
+@import url(css/animation.css);
+@import url(css/main.css);
+@import url(css/font-awesome.css);
+@import url(css/monosocialiconsfont.css);
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,300,300italic,400italic,500,500italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Martel:400,300,600,700);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Martel+Sans:400,700,300,200,600);
+.respad {
+  overflow-x: hidden; }
+
+.arpw-ul .arpw-li .box {
+  padding: 15px 0 0;
+  background: #FFF;
+  -webkit-box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.15);
+  -moz-box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.15);
+  box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.15); }
+
+.arpw-ul .arpw-li a {
+  color: #414042; }
+  .arpw-ul .arpw-li a:hover {
+    color: #000;
+    text-decoration: none; }
+
+@media (min-width: 768px) {
+  .arpw-ul .arpw-li div.arpw-thumbnail {
+    overflow: hidden;
+    min-height: 244px;
+    max-height: 244px;
+    margin: 0 30px;
+    text-align: center;
+    -webkit-display: -webkit-box;
+    -webkit-display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; } }
+
+@media (max-width: 767px) {
+  .arpw-ul .arpw-li div.arpw-thumbnail {
+    margin: 0 30px;
+    text-align: center;
+    align-items: center;
+    justify-content: center; } }
+
+.arpw-ul .arpw-li .arpw-title {
+  display: block;
+  margin: 0 0 20px;
+  padding: 30px 30px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 32px;
+  white-space: pre-line;
+  /* These are technically the same, but use both */
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  /* Instead use this non-standard one: */
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */ }
+
+.arpw-ul .arpw-li .arpw-time {
+  display: block;
+  margin: 0 0 10px;
+  padding: 0 30px;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 200;
+  color: #ababab;
+  line-height: 100%; }
+  @media (max-width: 767px) {
+    .arpw-ul .arpw-li .arpw-time {
+      padding: 0 20px; } }
+
+.arpw-ul .arpw-li .arpw-summary {
+  display: block;
+  margin: 0 0 10px;
+  padding: 0 30px 30px;
+  font-family: 'Martel', serif;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: pre-line;
+  /* These are technically the same, but use both */
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  /* Instead use this non-standard one: */
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */ }
+
+.wpcf7-form {
+  padding: 30px 0; }
+  .wpcf7-form .contact-notice {
+    position: relative;
+    width: 98%;
+    margin-left: 6px;
+    margin-right: 7px; }
+    .wpcf7-form .contact-notice .wpcf7-response-output {
+      width: auto; }
+  .wpcf7-form .wpcf7-not-valid-tip {
+    display: none !important; }
+  .wpcf7-form .wpcf7-not-valid {
+    border: 2px solid red; }
+  .wpcf7-form input::-webkit-input-placeholder, .wpcf7-form textarea::-webkit-input-placeholder {
+    opacity: 1 !important;
+    color: #414042; }
+  .wpcf7-form input:-moz-placeholder, .wpcf7-form textarea:-moz-placeholder {
+    opacity: 1 !important;
+    color: #414042; }
+  .wpcf7-form input::-moz-placeholder, .wpcf7-form textarea::-moz-placeholder {
+    opacity: 1 !important;
+    color: #414042; }
+  .wpcf7-form input:-ms-input-placeholder, .wpcf7-form textarea:-ms-input-placeholder {
+    opacity: 1 !important;
+    color: #414042; }
+  .wpcf7-form input {
+    margin: 0 0 20px;
+    padding: 10px 15px;
+    border: 2px solid #414042; }
+  .wpcf7-form input[type="text"] {
+    width: 100%; }
+  .wpcf7-form .firstname {
+    padding: 0 10px 0 0; }
+  .wpcf7-form .lastname {
+    padding: 0 0 0 10px; }
+  .wpcf7-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #414042; }
+  .wpcf7-form .wpcf7-submit {
+    margin: 30px 0 0;
+    padding: 12px 40px 11px;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+    color: #FFF;
+    text-align: center;
+    line-height: 100%;
+    border: 0;
+    background: #414042; }
+    .wpcf7-form .wpcf7-submit:hover {
+      background: #000; }
+
+.wppb-default-username {
+  width: 100% !important; }
+
+.wppb-user-forms {
+  font-family: 'Martel', serif;
+  font-style: normal;
+  font-weight: 200; }
+  .wppb-user-forms li {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    padding: 0 15px 15px; }
+    @media (max-width: 767px) {
+      .wppb-user-forms li {
+        width: 100%; } }
+    .wppb-user-forms li label {
+      display: block;
+      width: 100%;
+      font-family: 'Martel', serif;
+      font-style: normal;
+      font-weight: 200; }
+    .wppb-user-forms li input[type="text"], .wppb-user-forms li input[type="password"], .wppb-user-forms li input[type="email"] {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #333;
+      border-radius: 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      -o-border-radius: 0; }
+    .wppb-user-forms li select {
+      position: relative;
+      width: 100%;
+      padding: 6px 10px;
+      border: 1px solid #EBEBEB;
+      -webkit-border-radius: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -o-appearance: none;
+      background: #EBEBEB url("img/chevron-down.png") right 15px no-repeat !important; }
+      .wppb-user-forms li select ::-ms-expand {
+        display: none; }
+      @media screen and (min-width: 0\0) {
+        .wppb-user-forms li select {
+          position: relative;
+          width: 100%;
+          padding: 6px 10px;
+          border: 1px solid #EBEBEB;
+          -webkit-border-radius: 0;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          -o-appearance: none;
+          background-color: #EBEBEB !important;
+          background-image: none !important; } }
+    .wppb-user-forms li .wppb-description-delimiter {
+      position: absolute;
+      top: 2px;
+      right: 16px;
+      margin: 0; }
+    .wppb-user-forms li.wppb-default-display-name-publicly-as {
+      width: 100%; }
+      .wppb-user-forms li.wppb-default-display-name-publicly-as select {
+        width: 48%; }
+        @media (max-width: 767px) {
+          .wppb-user-forms li.wppb-default-display-name-publicly-as select {
+            width: 100%; } }
+    .wppb-user-forms li.wppb-default-e-mail {
+      width: 100%; }
+      .wppb-user-forms li.wppb-default-e-mail input[type="email"] {
+        width: 48%; }
+        @media (max-width: 767px) {
+          .wppb-user-forms li.wppb-default-e-mail input[type="email"] {
+            width: 100%; } }
+    .wppb-user-forms li.wppb-default-username {
+      display: none; }
+    .wppb-user-forms li.wppb-checkbox {
+      width: 100%;
+      padding: 31px 15px 0; }
+      .wppb-user-forms li.wppb-checkbox .wppb-checkboxes {
+        width: 100%;
+        /* Base for label styling */
+        /* checkbox aspect */
+        /* checked mark aspect */
+        /* checked mark aspect changes */
+        /* disabled checkbox */
+        /* accessibility */
+        /* hover style just for information */ }
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes li {
+          margin: 5px 0; }
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes label {
+          display: initial;
+          overflow: hidden;
+          width: 100%;
+          float: left; }
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:not(:checked),
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:checked {
+          position: absolute;
+          left: -9999px; }
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:not(:checked) + label,
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:checked + label {
+          position: relative;
+          padding-left: 31px;
+          cursor: pointer; }
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:not(:checked) + label:before,
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:checked + label:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 2px;
+          width: 20px;
+          height: 20px;
+          border: 2px solid #414042;
+          background: #FFF;
+          border-radius: 3px; }
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:not(:checked) + label:after,
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:checked + label:after {
+          content: '\f00c';
+          position: absolute;
+          top: 6px;
+          left: 3px;
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 0.8;
+          color: #414042;
+          transition: all .2s; }
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:not(:checked) + label:after {
+          opacity: 0;
+          transform: scale(0); }
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:checked + label:after {
+          opacity: 1;
+          transform: scale(1); }
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:disabled:not(:checked) + label:before,
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:disabled:checked + label:before {
+          box-shadow: none;
+          border-color: #bbb;
+          background-color: #ddd; }
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:disabled:checked + label:after {
+          color: #999; }
+        .wppb-user-forms li.wppb-checkbox .wppb-checkboxes [type="checkbox"]:disabled + label {
+          color: #aaa; }
+    .wppb-user-forms li.wppb-recaptcha {
+      margin-left: 367px;
+      margin-top: -72px; }
+  .wppb-user-forms .form-submit .submit {
+    margin: 30px 0 0;
+    padding: 12px 40px 11px;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+    color: #FFF;
+    text-align: center;
+    line-height: 100%;
+    border: 0;
+    background: #414042; }
+
+.quiz-level {
+  padding-bottom: 40px; }
+
+.h2_quiz {
+  font-size: 30px !important; }
+
+.date-quiz {
+  font-size: 14px !important; }
+
+.quiz-content-desc {
+  font-size: 16px !important; }
+
+.questionBody .col-a {
+  padding: 18px 0 18px 80px; }
+  @media (max-width: 767px) {
+    .questionBody .col-a {
+      padding: 18px 15px; } }
+  .questionBody .col-a h2 {
+    margin: 20px 0; }
+  .questionBody .col-a .wpProQuiz_reviewDiv {
+    margin: 0 0 20px !important; }
+  .questionBody .col-a .wpProQuiz_reviewQuestion {
+    max-height: inherit;
+    overflow: visible; }
+    .questionBody .col-a .wpProQuiz_reviewQuestion ol {
+      padding: 0 !important; }
+      .questionBody .col-a .wpProQuiz_reviewQuestion ol li {
+        width: 37px !important;
+        margin: 8px 2px !important;
+        border-radius: 50% !important; }
+        .questionBody .col-a .wpProQuiz_reviewQuestion ol li.wpProQuiz_reviewQuestionTarget {
+          border: 1px solid #000; }
+
+.questionBody .col-b {
+  padding: 0; }
+  .questionBody .col-b .quizImage img {
+    width: 100%;
+    padding: 15%; }
+
+.widget_yarpp_widget h2 {
+  padding: 15px 30px 9px !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  font-family: 'Martel Sans';
+  color: #404041 !important; }
+
+.widget_yarpp_widget .yarpp-related-widget {
+  background: #ffffff;
+  padding: 17px 0 5px;
+  margin: 0 0 20px; }
+  .widget_yarpp_widget .yarpp-related-widget ol {
+    padding: 0 0 0 30px; }
+    .widget_yarpp_widget .yarpp-related-widget ol li {
+      list-style: none; }
+      .widget_yarpp_widget .yarpp-related-widget ol li a {
+        color: #404041;
+        border-bottom: 2px solid #55cae2;
+        font-family: 'Martel';
+        position: relative;
+        display: inline-block;
+        text-decoration: none;
+        overflow: hidden;
+        z-index: 1;
+        white-space: pre-line;
+        vertical-align: middle;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: bold; }
+        .widget_yarpp_widget .yarpp-related-widget ol li a:before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+          width: 100%;
+          height: 100%;
+          background: #55cae2;
+          content: '';
+          -webkit-transition: -webkit-transform 0.2s;
+          transition: transform 0.2s;
+          -webkit-transform: translateY(95%);
+          transform: translateY(95%); }
+        .widget_yarpp_widget .yarpp-related-widget ol li a:hover:before {
+          overflow: hidden;
+          -webkit-transform: translateY(0);
+          transform: translateY(0);
+          z-index: -1; }
+  .widget_yarpp_widget .yarpp-related-widget p {
+    margin: 0 0 10px 25px; }
+
+.privacy-policy-body {
+  padding: 35px 10px 10px 50px; }
+  .privacy-policy-body #body {
+    text-decoration: none;
+    color: black; }
+  .privacy-policy-body .number-list :before {
+    display: inline-block;
+    width: 1em;
+    padding-right: 0.5em;
+    font-weight: bold;
+    text-align: right; }
+  .privacy-policy-body ul {
+    list-style-type: disc; }
+
+.term-use-body {
+  padding: 35px 10px 135px 50px; }
+  .term-use-body .terms {
+    text-decoration: underline; }

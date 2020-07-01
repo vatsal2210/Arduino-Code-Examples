@@ -1,0 +1,26 @@
+function piResponse() {
+piSetCookie('visitor_id114242', '825545078', 3650);
+
+if (document.location.protocol != "https:") {
+var analytics_link = "http://" + "go.aspencore.com/analytics?";
+pi.tracker.visitor_id='825545078';
+
+pi.tracker.visitor_id_sign='556e6d993e8d9ed0def5ce3295e5369e07e5232d09f47d907895d2a07c87a3414b9d487007429a0a7d1d198de80df7609ad776a8';
+
+var variables = 'conly=true';
+for (property in pi.tracker) {
+	variables += "&"+property+"="+pi.tracker[property];
+}
+var headID = document.getElementsByTagName("head")[0];
+piScriptObj[piScriptNum] = document.createElement('script');
+piScriptObj[piScriptNum].type = 'text/javascript';
+piScriptObj[piScriptNum].src = analytics_link + variables;
+headID.appendChild(piScriptObj[piScriptNum]);
+piScriptObj[piScriptNum].onload = function() { return; }
+}
+}
+piResponse();
+
+
+
+

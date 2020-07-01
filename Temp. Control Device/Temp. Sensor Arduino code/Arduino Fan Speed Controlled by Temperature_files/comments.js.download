@@ -1,0 +1,207 @@
+(function($){
+
+    $(window).load(function() {
+        var captcha = $('#cptchpr_input');
+        if (typeof captcha !== 'undefined') {
+            $(captcha).attr('tabindex', '4');
+        }
+        var location = window.location.href;
+        var currentLocation = window.location.search;
+        var number_of_comments = $("#has_view_more").val();
+
+        if(currentLocation.match("replytocom") && currentLocation.match("replytocom").length > 0) {
+            var loc_pcs = location.split("?");
+            var base_url = loc_pcs[0];
+            var first_comment_page = getUrlParameter('first_page');
+            var recent_comment_page = getUrlParameter('recent_page');
+            var url_to_load = [];
+
+            for(var i=recent_comment_page; i < first_comment_page; i++) {
+                url_to_load[i] = base_url+"/comment-page-"+i+"#comments";
+            }
+
+            var used_urls = url_to_load.sort(function(a,b){
+                return a-b;
+            });
+
+            for(var u in used_urls) {
+                if(used_urls[u]) {
+                    setTimeout(getComments(used_urls[u]), 3000);
+                }
+            }
+
+            var latest_view_more_btn = base_url+"/comment-page-"+parseInt(parseInt(recent_comment_page)-1)+"#comments";
+            if(number_of_comments == 1) {
+                var btn = $('#view_more a');
+                btn[0].href = latest_view_more_btn;
+            }
+        }
+
+        if(number_of_comments == 1) {
+            var anchor = $('#view_more a');
+            first_comment_page = getCommentPageNumber(anchor[0].href, true);
+            $("#first_comment_page").val(first_comment_page);
+
+            var children = $('.comment .children li');
+            $(children).each(function(key, val){
+                if(parseInt(key+1) > 2) {
+                    $(val).addClass('hidden-depth').hide();
+                    if( (key +1) == $(children).length ) {
+                        $('#' + val.id).parents('.children').last().append($('<li>').append($('<div>').addClass('li-view-more').html('More').attr('id', 'view-more_' + val.id)));
+                    }
+                }
+            });
+        }
+
+        if(location.search("comment-") != -1) {
+            var loc_p = location.split('#');
+            $('html, body').animate({scrollTop: $('#'+loc_p[1]).offset().top-120}, "slow");
+        }
+        if(location.search("#respond") != -1) {
+            $('html, body').animate({scrollTop: $('.comment-form-cont').offset().top-120}, "slow");
+        }
+
+        var isSubmit = false;
+
+        $('#comments').on('click', 'p.form-submit .submit', function() {
+            if(isSubmit == false) {
+                var author = $('#author').val();
+                var email = $('#email').val();
+                var comment = $('#comment').val();
+                var is_logged_in = $('.logged-in-as').html() || '';
+
+                if(is_logged_in !== '') {
+                    if(comment == '') {
+                        $('.notice_error').show();
+                    } else {
+                        $('.notice_error').hide();
+                        $('.comment-form').submit();
+                        return true;
+                    }
+                } else {
+                    if(author == '' || email == '' || comment == '') {
+                        $('.notice_error').show();
+                    } else {
+                        $('.notice_error').hide();
+                        if (isValidEmailAddress(email)) {
+                            $('.comment-form').submit();
+                            return true;
+                        } else {
+                            $('.notice_error').show().html("Error! Invalid Email Address.");
+                        }
+                    }
+                }
+
+                return false;
+            }
+
+
+        });
+
+        $('#comments').on('click', 'div.toggle-close', function() {
+            $( '.comment-content' ).slideUp( "slow", function() {
+                $('.comment-content').hide();
+                $('.toggle-close').hide();
+                $('.toggle-open').show();
+            });
+        });
+        $('#comments').on('click', 'div.toggle-open', function(){
+            $( '.comment-content' ).slideDown( "slow", function() {
+                $('.comment-content').show();
+                $('.toggle-close').show();
+                $('.toggle-open').hide();
+            });
+        });
+
+        $('#comments').on('click', '#view_more a', function(e) {
+            e.preventDefault();
+            var url= this.href;
+            recent_comment_page = getCommentPageNumber(url);
+            $("#recent_comment_page").val(recent_comment_page);
+            getComments(url);
+        });
+
+        $('#comments').on('click', 'div.li-view-more', function(){
+            var my_id = this.id;
+            var hidden = $('#'+my_id).closest('ul').find('li.hidden-depth');
+            $(hidden).each(function(k, v){
+                $(v).show();
+            });
+            $('#'+my_id).hide();
+        });
+
+        $("#comments").on("click", "a.comment-reply-link", function(e){
+            e.preventDefault();
+            var first = $("#first_comment_page").val();
+            var recent = $("#recent_comment_page").val();
+            var href = this.href.split("?");
+            href[1] = "first_page="+first+"&recent_page="+recent+"&"+href[1];
+            var active_href = href.join("?");
+            this.click = this.onclick;
+            window.location = active_href;
+        });
+    });
+
+    function isValidEmailAddress(emailAddress) {
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        return pattern.test(emailAddress);
+    }
+
+    function  getCommentPageNumber(url, first)
+    {
+        first = first || false;
+        var a_pcs = url.split("/");
+        var comment_pages = a_pcs[5].split("#");
+        var comm = comment_pages[0].split("-");
+        var counter = parseInt(comm[2]);
+        var num_of_current_page = counter;
+        if(first) {
+            num_of_current_page = parseInt(counter+1);
+        }
+        return num_of_current_page;
+    }
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+
+    function getComments(url)
+    {
+        if(url) {
+            $('.comment-loading').show();
+            $.get(url, function(data){
+                var view_more = $(data).find('#view_more');
+                var view_more_replacement = view_more.html() || '';
+
+                $(data).find('ul.comment-list li.depth-1').appendTo('ul.comment-list');
+                $('#view_more').html(view_more_replacement);
+                $('.comment-loading').hide();
+
+                var parent = $(data).find('ul.comment-list li.depth-1');
+                $(parent).each(function (key, val){
+                    var children = $(val).find('.children li');
+                    $(children).each(function(c_key, c_val){
+                        if(parseInt(c_key+1) > 2) {
+                            $('#'+c_val.id).addClass('hidden-depth').hide();
+                            if( (c_key +1) == $(children).length ) {
+                                $('#' + c_val.id).parents('.children').last().append($('<li>').append($('<div>').addClass('li-view-more').html('More').attr('id', 'view-more_' + c_val.id)));
+                            }
+                        }
+                    });
+                });
+            });
+        }
+    }
+
+}(jQuery));

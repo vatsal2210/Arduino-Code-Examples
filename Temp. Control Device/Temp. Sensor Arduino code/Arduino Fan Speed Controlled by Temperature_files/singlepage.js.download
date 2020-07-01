@@ -1,0 +1,16 @@
+(function($){
+	$(document).ready(function(){
+
+ 		// Affix - Sticky sidebar
+			// $('.widgets:eq(2)').affix({
+			//     offset: {     
+			//     	top: function () {
+			//     		return $('#trigger-point').offset().top - $('.top-bar-1-wrap:visible').outerHeight()
+			//     	},
+			//     	bottom: function() {
+			//     		return ($('.footer-wrap:visible').outerHeight() + $('.ads-full').outerHeight(true)) + $('.ads-full').outerHeight(true) + 30
+			//     	}
+			//     }
+			// });                  
+	});
+}(jQuery));
